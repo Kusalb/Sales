@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Shop Sign up</title>
+</head>
+<body>
+<form method="POST" action="/productupdate/{{ product.id }}">{% csrf_token %}
+    <input type="file" name='image'  value="{{ product.image }}" >
+    <input type="text" name='product_name' placeholder="product_name" value="{{ product.product_name }}" >
+    <input type="text" name='price' placeholder="price"  value="{{ product.price }}">
+    <input type="text" name='discount' placeholder="discount"  value="{{ product.discount }}">
+    <input type="text" name='category' placeholder="category"  value="{{ product.category }}">
+  <button type="submit">Update</button>
+</form>
+
+</body>
+</html>

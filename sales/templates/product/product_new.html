@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Shop Sign up</title>
+</head>
+<body>
+<form method="POST" action="{% url 'product' %}">{% csrf_token %}
+    <input type="file" name='image' >
+    <input type="text" name='product_name' placeholder="product_name" >
+    <input type="text" name='price' placeholder="price" >
+    <input type="text" name='discount' placeholder="discount" >
+    <input type="text" name='category' placeholder="category" >
+  <button type="submit">create</button>
+</form>
+
+</body>
+</html>

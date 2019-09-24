@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Customer</title>
+</head>
+<body>
+<form method="POST" action="{% url 'customer' %}">{% csrf_token %}
+     <input type="text" name='first_name' placeholder="first_name" ><br>
+    <input type="text" name='last_name' placeholder="last_name" ><br>
+    <input type="text" name='address' placeholder="location" ><br>
+    <input type="text" name='email' placeholder="email" ><br>
+    <input type="text" name='gender' placeholder="gender" ><br>
+    <input type="number" name='contact' placeholder="contact" ><br>
+    <input type="password" name='password' placeholder="password" ><br>
+    <input type="password" name='password2' placeholder="password2" ><br>
+
+  <button type="submit">create</button>
+</form>
+</body>
+</html>

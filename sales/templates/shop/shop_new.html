@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Shop Sign up</title>
+</head>
+<body>
+<h1> ADD shop</h1>
+<form method="POST" action="{% url 'shop' %}">{% csrf_token %}
+     <input type="text" name='shop_name' placeholder="shop_ame" ><br>
+    <input type="text" name='contact' placeholder="contact" ><br>
+    <input type="text" name='location' placeholder="location" ><br>
+    <input type="text" name='category' placeholder="category" ><br>
+    <input type="text" name='sale_per' placeholder="sale percentage" ><br>
+    <input type="text" name='branded' placeholder="branded" ><br>
+    <input type="email" name='email' placeholder="email" ><br>
+    <input type="password" name='password' placeholder="password" ><br>
+    <input type="password" name='password2' placeholder="password2" ><br>
+
+  <button type="submit">Sign up</button>
+</form>
+
+</body>
+</html>

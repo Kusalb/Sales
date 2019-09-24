@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Shop List</title>
+</head>
+<body>
+<a href="/shop">New</a>
+     <table border="1">
+            <thead>
+            <tr>
+                <th scope="col">Shop Name</th>
+                <th scope="col">Contact</th>
+                <th scope="col">Location</th>
+                <th scope="col">category</th>
+                <th scope="col">Sales Percentage</th>
+                <th scope="col">Branded</th>
+                <th scope="col">Email</th>
+                <th scope="col">Password</th>
+                <th scope="col">Edit</th>
+                <th scope="col">Delete</th>
+
+            </tr>
+            </thead>
+            {% for shops in shop %}
+                <tbody>
+                <tr>
+                <td>{{ shops.shop_name}}</td>
+                <td>{{ shops.contact }}</td>
+                <td>{{ shops.location }}</td>
+                <td>{{ shops.category }}</td>
+                <td>{{ shops.sale_per }}</td>
+                <td>{{ shops.branded }}</td>
+                <td>{{ shops.email }}</td>
+                <td>{{ shops.password }}</td>
+                <td> <a class="dropdown-item" href="/shopedit/{{ shops.id }}">Edit</a></td>
+                <td> <a class="dropdown-item" href="/shopdestroy/{{ shops.id }}"
+                               onclick="return confirm('Are you sure?')">Delete</a>
+</td>
+
+
+
+
+            {% endfor %}
+            </tr>
+            </tbody>
+        </table>
+</body>
+</html>

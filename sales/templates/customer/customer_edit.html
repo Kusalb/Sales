@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Customer</title>
+</head>
+<body>
+<form method="POST" action="/customerupdate/{{ customer.id }}">{% csrf_token %}
+    <input type="text" name='first_name' placeholder="first_name" value="{{ customer.first_name }}">
+    <input type="text" name='last_name' placeholder="last_name" value="{{ customer.last_name }}">
+    <input type="text" name='address' placeholder="location" value="{{ customer.address }}">
+    <input type="text" name='email' placeholder="email" value="{{ customer.email }}">
+    <input type="text" name='gender' placeholder="gender" value="{{ customer.gender }}">
+    <input type="number" name='contact' placeholder="contact" value="{{ customer.contact }}">
+    <input type="password" name='password' placeholder="password" value="{{ customer.password }}"><br>
+    <input type="password" name='password2' placeholder="password2" value="{{ customer.password2 }}"><br>
+    <button type="submit">create</button>
+</form>
+</body>
+</html>
