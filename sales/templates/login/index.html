@@ -1,68 +1,439 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+    {% load staticfiles %}
+    <link href="{% static 'sales/styles/style/css/bootstrap.min.css' %}" rel="stylesheet">
+    <link href="{% static 'sales/styles/style/css/owl.carousel.min.css' %}" rel="stylesheet">
+    <link href="{% static 'sales/styles/style/css/style.css' %}" rel="stylesheet">
+    <link href="{% static 'sales/styles/style/css/select-case.css' %}" rel="stylesheet">
+    <link href="{% static 'sales/styles/style/css/responsive.css' %}" rel="stylesheet">
+
+    <script type="text/javascript" src="{% static 'sales/styles/style/js/jquery.min.js' %}"></script>
+    <script type="text/javascript" src="{% static 'sales/styles/style/js/bootstrap.min.js' %}"></script>
     <meta charset="UTF-8">
-    <title>Sales- Login</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title></title>
+
+    <style>
+        .index-banner{
+            width:100%;
+            position:relative;
+            top:0;
+            left:0;
+            right:0;
+            box-sizing: border-box;
+            height:40rem;
+            background: linear-gradient(rgba(0,0,0,.5),rgba(0,0,0,0.3)), url({% static 'sales/styles/images/13673.jpg' %});
+            background-repeat: no-repeat;
+            background-position: center;
+            background-size: cover;
+
+        }
+        .tri-base{
+            padding:30px;
+            position: absolute;
+            height:18rem;
+            width: 100%;
+            bottom:0;
+            background-size: cover;
+        }
+        .tagline2{
+            position: absolute;
+            bottom:15px;
+            right:25px;
+            font-weight: 400;
+            /*transform: scale(1.2);*/
+        }
+        .main-tag{
+            color: #805378;
+            font-size: 45px;
+            font-weight: 800;
+
+        }
+        .focus-in-contract-bck {
+            -webkit-animation: focus-in-contract-bck 1s cubic-bezier(0.250, 0.460, 0.450, 0.940) both;
+            animation: focus-in-contract-bck 1.5s cubic-bezier(0.250, 0.460, 0.450, 0.940) both;
+        }
+        @-webkit-keyframes focus-in-contract-bck {
+            0% {
+                letter-spacing: 1em;
+                -webkit-transform: translateZ(300px);
+                transform: translateZ(300px);
+                -webkit-filter: blur(12px);
+                filter: blur(12px);
+                opacity: 0;
+            }
+            100% {
+                -webkit-transform: translateZ(12px);
+                transform: translateZ(12px);
+                -webkit-filter: blur(0);
+                filter: blur(0);
+                opacity: 1;
+            }
+        }
+        @keyframes focus-in-contract-bck {
+            0% {
+                letter-spacing: 1em;
+                -webkit-transform: translateZ(300px);
+                transform: translateZ(300px);
+                -webkit-filter: blur(12px);
+                filter: blur(12px);
+                opacity: 0;
+            }
+            100% {
+                -webkit-transform: translateZ(12px);
+                transform: translateZ(12px);
+                -webkit-filter: blur(0);
+                filter: blur(0);
+                opacity: 1;
+            }
+        }
+        .text-shadow-drop-right {
+            -webkit-animation: text-shadow-drop-right 0.6s both;
+            animation: text-shadow-drop-right 0.6s both;
+            animation-delay: 1.5s;
+        }
+        @-webkit-keyframes text-shadow-drop-right {
+            0% {
+                text-shadow: 0 0 0 rgba(0, 0, 0, 0);
+            }
+            100% {
+                text-shadow: 6px 0 18px rgba(0, 0, 0, 0.35);
+            }
+        }
+        @keyframes text-shadow-drop-right {
+            0% {
+                text-shadow: 0 0 0 rgba(0, 0, 0, 0);
+            }
+            100% {
+                text-shadow: 6px 0 18px rgba(0, 0, 0, 0.35);
+            }
+        }
+
+        .header{
+            position: fixed;
+            top:0;
+            width:100%;
+            height:5rem;
+            background: rgba(255,255,255,0.2);
+            z-index:100;
+            text-align: center;
+        }
+        .header ul li{
+            list-style: none;
+            display: inline;
+            color:white;
+            text-align: center;
+            padding: 0 20px;
+            font-size: 16px;
+            font-weight: 500;
+        }
+        .header ul{
+            position: relative;
+            transform: translate(0,-50%);
+            top:50%;
+        }
+        .owl-carousel img{
+            height:25rem;
+            width:100%;
+        }
+        .owl-carousel .owl-nav.disabled {
+            display: block;
+            position: absolute;
+            transform: translate(0,-50%);
+            top: 50%;
+            width: 100%;
+        }
+        .owl-carousel .owl-nav button.owl-next{
+            position: absolute;
+            right:-18px;
+        }
+        .owl-carousel .owl-nav button.owl-prev{
+            position: relative;
+            left:-1.5%;
+        }
+        .owl-carousel .owl-nav button.owl-next, .owl-carousel .owl-nav button.owl-prev, .owl-carousel button.owl-dot {
+            color: darkslategrey;
+            font-size: 80px!important;
+        }
+        .owl-carousel .owl-stage-outer {
+            z-index:10;
+        }
+        .category-container{
+            width:100%;
+            padding:15px;
+            height:auto;
+        }
+        .best-deal-container{
+            width:100%;
+            padding:20px;
+        }
+
+        .search-container{
+            background: rgba(0,0,0,0.2);
+            border-radius: 5px;
+            width:50%;
+            position: relative;
+            transform: translate(-50%,-50%);
+            left:50%;
+            top:45%;
+            display: inline-flex;
+            z-index:100;
+            height:8rem;
+            padding:1.5rem;
+        }
+        .location{
+            outline: none;
+            border-left:none;
+            border-bottom: none;
+            border-top: none;
+            border-right: 1px solid #ad6f9f;
+            width:40%;
+            height:5rem;
+            padding-left:15px;
+            display:inline-block;
+            border-bottom-left-radius: 5px;
+            border-top-left-radius: 5px;
+        }
+        .category{
+            width:100%;
+            height:4rem;
+            padding-left:15px
+
+        }
+
+        .srch{
+            width:18%;
+            /*display: inherit;*/
+            height:5rem;
+            background: #ad6f9f;
+            color: white;
+            border: none;
+            border-top-right-radius: 5px;
+            border-bottom-right-radius: 5px;
+            outline: none;
+        }
+        .text-pink{
+            color:#805378;
+        }
+        .cat-cir{
+            position: relative;
+            padding:10px;
+            width:155px;
+            height:155px;
+            border-radius: 76px;
+            color:black;
+            /*border: 1px solid #805378;*/
+            display: inline-block;
+            margin-right: 20px;
+            margin-bottom:45px;
+            -webkit-box-shadow: 0 8px 10px 0px rgba(0, 0, 0, 1);
+            -moz-box-shadow: 0 8px 10px 0px rgba(0, 0, 0, 1);
+            box-shadow: 0 8px 10px 0px rgba(0, 0, 0, 1);
+        }
+        .cat-cir img{
+            position: relative;
+            transform: translate(-50%,-50%);
+            top:40%;
+            left:50%;
+            height:8rem;
+            width:auto;
+        }
+        .cat-cir p{
+            position: absolute;
+            transform: translate(-50%,-50%);
+            left: 50%;
+            top: 80%;
+        }
+        .cat-detail{
+            position: relative;
+            transform: translate(-50%,0);
+            left:50%;
+
+        }
+        .deals-container{
+            width:100%;
+            padding:20px;
+            position: relative;
+        }
+        .deals-block{
+
+            width:18%;
+            height:20rem;
+            display: inline-grid;
+            text-align: center;
+        }
+        .deals-block:hover{
+            box-shadow: 0 10px 15px rgba(0,0,0,0.2);
+        }
+        .deals-block img{
+            position: relative;
+            transform: translate(-50%,0);
+            left:50%;
+            height:10rem;
+            width:auto;
+        }
+
+
+
+    </style>
 </head>
-<link href="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
-<script src="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js"></script>
-<script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-{% load staticfiles %}
-<link href="{% static 'sales/styles.css' %}" rel="stylesheet">
-<!------ Include the above in your HEAD tag ---------->
-
-   <!--Made with love by Mutiullah Samim -->
-
-	<!--Bootsrap 4 CDN-->
-	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
-
-    <!--Fontawesome CDN-->
-	<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.3.1/css/all.css" integrity="sha384-mzrmE5qonljUremFsqc01SB46JvROS7bZs3IO2EmfFsd15uHvIt+Y8vEf7N7fWAU" crossorigin="anonymous">
-
-	<!--Custom styles-->
-	<link rel="stylesheet" type="text/css" href="styles.css">
-<body>
-<div class="container">
-	<div class="d-flex justify-content-center h-100">
-		<div class="card">
-			<div class="card-header">
-				<h3>Sign In</h3>
-
-			</div>
-			<div class="card-body">
-				<form action="{% url 'login' %}" method="POST">
-					<div class="input-group form-group">
-						<div class="input-group-prepend">
-							<span class="input-group-text"><i class="fas fa-user"></i></span>
-						</div>
-						<input type="text" class="form-control" placeholder="username" name = 'username' >
-
-					</div>
-					<div class="input-group form-group">
-						<div class="input-group-prepend">
-							<span class="input-group-text"><i class="fas fa-key"></i></span>
-						</div>
-						<input type="password" class="form-control" placeholder="password" name = 'password'>
-					</div>
-					<div class="row align-items-center remember">
-						<input type="checkbox">Remember Me
-					</div>
-					<div class="form-group">
-						<input type="submit" value="Login" class="btn float-right login_btn">
-					</div>
-				</form>
-			</div>
-			<div class="card-footer">
-				<div class="d-flex justify-content-center links">
-					Sign up as <a href="{% url 'shop' %}">Shop </a>
-                 or <a href="{% url 'customer' %}"> Customer </a>
-				</div>
-				<div class="d-flex justify-content-center">
-{#					<a href="#">Forgot your password?</a>#}
-				</div>
-			</div>
-		</div>
-	</div>
+<body >
+<div class="header">
+    <ul>
+        <li>Home</li>
+        <li>Best Deals</li>
+        <li>Brands</li>
+       <a href="{% url 'login' %}"><li style="float:right;"><i class="fa fa-user"></i> </li></a>
+    </ul>
 </div>
+
+<div class="index-banner">
+    <div class="search-container">
+        <input type="text" placeholder="Enter location here..." class="location">
+        <div class="custom-select">
+            <select class="category ">
+                <option value="0">Select Category:</option>
+                <option value="1">Clothes</option>
+                <option value="2">Shoes</option>
+                <option value="3">Electronics</option>
+                <option value="4">Automobil</option>
+                <option value="5">Makeup</option>
+
+            </select>
+        </div>
+        <button class="srch"><i class="fa fa-search"></i> </button>
+    </div>
+
+
+    <div class="tri-base" style=" background-image: url({% static 'sales/styles/images/base-tri.png' %});">
+        <h1 class="text-right tagline2 focus-in-contract-bck "><b class="main-tag text-shadow-drop-right">Steal</b>
+            <br>the
+            <br>Best <b class="main-tag text-shadow-drop-right">Deals</b>
+        </h1>
+    </div>
+
+</div>
+
+<div class="category-container">
+    <h3 class="text-left text-pink">Categories</h3>
+    <div class="cat-detail">
+        <div class="cat-cir">
+            <img src="{% static 'sales/styles/images/icons/tshirt.png' %}" class="img-responsive">
+            <p class="text-center">Clothes</p>
+        </div>
+        <div class="cat-cir">
+            <img src="{% static 'sales/styles/images/icons/converse.png' %}" class="img-responsive">
+            <p class="text-center">Shoes</p>
+        </div>
+        <div class="cat-cir">
+            <img src="{% static 'sales/styles/images/icons/jeep.png' %}" class="img-responsive">
+            <p class="text-center">Automobile</p>
+        </div>
+        <div class="cat-cir">
+            <img src="{% static 'sales/styles/images/icons/makeup.png' %}" class="img-responsive">
+            <p class="text-center">Grooming</p>
+        </div>
+        <div class="cat-cir">
+            <img src="{% static 'sales/styles/images/icons/electronic.png' %}" class="img-responsive">
+            <p class="text-center">Electronics</p>
+        </div>
+        <div class="cat-cir">
+            <img src="{% static 'sales/styles/images/icons/restaurant.png' %}" class="img-responsive">
+            <p class="text-center">Restaurants</p>
+        </div>
+        <div class="cat-cir">
+            <img src="{% static 'sales/styles/images/icons/travel.png' %}" class="img-responsive">
+            <p class="text-center">Tours & Travel</p>
+        </div>
+        <div class="cat-cir">
+            <img src="{% static 'sales/styles/images/icons/book.png' %}" class="img-responsive">
+            <p class="text-center">Books</p>
+        </div>
+    </div>
+
+</div>
+
+
+<div class="best-deal-container">
+    <h3 class="text-left text-pink">Deals of the Day!!</h3>
+    <div class="owl-carousel owl-theme" >
+        <div class="item" >
+            <img src="{% static 'sales/styles/images/ads/ad1.jpg'%}" class="img-responsive">
+
+        </div>
+        <div class="item" style="height: 20rem">
+            <img src="{% static 'sales/styles/images/ads/ad2.jpg' %}" class="img-responsive">
+
+        </div>
+
+    </div>
+
+</div>
+
+<div class="deals-container">
+    <h3 class="text-left text-pink">Browse Offers!!</h3>
+    <div class="deals-block">
+        <img src="{% static 'sales/styles/images/icons/tshirt.png' %}" class="img-responsive">
+        <p><b>Shop Name Here</b></p>
+        <p><b>Offer: 10% Off on all items</b></p>
+        <p><b>Validity: 09-10-2019 To 09-20-2019</b></p>
+    </div>
+    <div class="deals-block">
+        <img src="{% static 'sales/styles//images/icons/tshirt.png' %}" class="img-responsive">
+        <p><b>Shop Name Here</b></p>
+        <p><b>Offer: 10% Off on all items</b></p>
+        <p><b>Validity: 09-10-2019 To 09-20-2019</b></p>
+    </div>
+    <div class="deals-block">
+        <img src="{% static 'sales/styles/images/icons/tshirt.png' %}" class="img-responsive">
+        <p><b>Shop Name Here</b></p>
+        <p><b>Offer: 10% Off on all items</b></p>
+        <p><b>Validity: 09-10-2019 To 09-20-2019</b></p>
+    </div>
+    <div class="deals-block">
+        <img src="{% static 'sales/styles/images/icons/tshirt.png' %}" class="img-responsive">
+        <p><b>Shop Name Here</b></p>
+        <p><b>Offer: 10% Off on all items</b></p>
+        <p><b>Validity: 09-10-2019 To 09-20-2019</b></p>
+    </div>
+    <div class="deals-block">
+        <img src="{% static 'sales/styles/images/icons/tshirt.png' %}" class="img-responsive">
+        <p><b>Shop Name Here</b></p>
+        <p><b>Offer: 10% Off on all items</b></p>
+        <p><b>Validity: 09-10-2019 To 09-20-2019</b></p>
+    </div>
+</div>
+
+<script type="text/javascript" src="{% static 'sales/styles/style/js/owl.carousel.js' %}"></script>
+<script>
+    $(document).ready(function() {
+        $('.owl-carousel').owlCarousel({
+            loop: true,
+            margin: 10,
+            responsiveClass: true,
+            autoplay: true,
+            autoplayTimeout: 1500,
+            autoplayHoverPause: true,
+            responsive: {
+                0: {
+                    items: 1,
+                    nav: true
+                },
+                600: {
+                    items: 2,
+                    nav: false
+                },
+                1000: {
+                    items: 2,
+                    nav: true,
+                    loop: true,
+                    margin: 20
+                }
+            }
+        });
+    });
+</script>
+<script type="text/javascript" src="{% static 'sales/styles/style/js/select-case.js' %}"></script>
 </body>
 </html>

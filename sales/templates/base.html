@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Sales</title>
+</head>
+{% load staticfiles %}
+<link rel="stylesheet" type="text/css"
+      href="{% static 'sales/styles/fonts/font-awesome-4.7.0/css/font-awesome.min.css' %}">
+<link rel="stylesheet" type="text/css"
+      href="{% static 'sales/styles/fonts/Linearicons-Free-v1.0.0/icon-font.min.css' %}">
+<link rel="stylesheet" type="text/css"
+      href="{% static 'sales/styles/fonts/iconic/css/material-design-iconic-font.min.css' %}">
+<link href="{% static 'sales/styles/style/css/bootstrap.min.css' %}" rel="stylesheet">
+<link href="{% static 'sales/styles/style/css/util.css' %}" rel="stylesheet">
+<link href="{% static 'sales/styles/style/css/select-case.css' %}" rel="stylesheet">
+<link href="{% static 'sales/styles/style/css/siginup.css' %}" rel="stylesheet">
+<script type="text/javascript" src="{% static 'sales/styles/style/js/jquery.min.js' %}"></script>
+<script type="text/javascript" src="{% static 'sales/styles/style/js/bootstrap.min.js' %}"></script>
+<link href="{% static 'sales/styles/style/css/style.css' %}" rel="stylesheet">
+<script type="text/javascript" charset="utf8" src="https://cdn.datatables.net/1.10.19/js/jquery.dataTables.js"></script>
+<link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.19/css/jquery.dataTables.css">
+
+<body>
+{% if user.is_active %}
+    {% if user.is_shop or user.is_admin %}
+        <div class="admin-header">
+
+            <ul>
+                <a href="{% url 'deal' %}">
+                    <li>Add Offer</li>
+                </a>
+                <a href="{% url 'dealshow' %}">
+                    <li>List Offer</li>
+                </a>
+                <a href="{% url 'product' %}">
+                    <li>Add Product Offer</li>
+                </a>
+                <a href="{% url 'productshow' %}">
+                    <li>List Product Offer</li>
+                </a>
+                <a href="{% url 'logout' %}">
+                    <li style="float: right"><i class="fa fa-power-off"></i></li>
+                </a>
+            </ul>
+        </div>
+        {% block content %}
+
+        {% endblock %}
+    {% endif %}
+{% else %}
+    <meta http-equiv="refresh" content="0; URL='http://127.0.0.1:8000/login'"/>
+{% endif %}
+
+</body>
+</html>

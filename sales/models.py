@@ -28,7 +28,7 @@ class Shop(models.Model):
     contact = models.CharField(max_length=200, default='')
     location = models.CharField(max_length=200, default='')
     category = models.CharField(max_length=200, default='')
-    sale_per = models.CharField(max_length=200, default='')
+    contact_person = models.CharField(max_length=200, default='')
     branded = models.CharField(max_length=200, default='')
     email = models.CharField(max_length=200, default='')
     password = models.CharField(max_length=200, default='')
@@ -51,3 +51,12 @@ class Employee(models.Model):
     econtact = models.CharField(max_length=15)
     class Meta:
         db_table = "employee"
+
+class Deals(models.Model):
+    CustomUser = models.ForeignKey(CustomUser, on_delete=models.CASCADE, null=True)
+    Shop = models.ForeignKey(Shop, on_delete=models.CASCADE, null=True)
+    image = models.ImageField(default='test.jpg', null=True, upload_to='deal')
+    deal_name = models.CharField(max_length=100)
+    valid_from = models.DateField(max_length=100)
+    valid_till = models.DateField(max_length=100)
+    discount_per = models.CharField(max_length=100)

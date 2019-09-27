@@ -1,0 +1,79 @@
+@import "https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css";
+
+*, *:before, *:after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+    margin: 0;
+    padding: 0;
+    /*transform: translate3d(0px, 0px, 0px);*/
+    /*transition: all 700ms ease;*/
+}
+     .admin-header{
+            position: relative;
+            top:0;
+            width:100%;
+            height:5rem;
+            /*background: rgb(110, 125, 230);*/
+            box-shadow: 0 10px 15px rgba(0,0,0,0.4);
+            border-bottom: 1px solid white;
+          background: -webkit-linear-gradient(38deg, #5685ed, #d063cc);
+          background: -o-linear-gradient(38deg, #5685ed, #d063cc);
+          background: -moz-linear-gradient(38deg, #5685ed, #d063cc);
+          background: linear-gradient(38deg, #5685ed, #d063cc);
+            z-index:100;
+            text-align: center;
+        }
+        .admin-header ul li{
+            list-style: none;
+            display: inline;
+            color:white;
+            text-align: center;
+            padding: 0 20px;
+            font-size: 16px;
+            font-weight: 500;
+        }
+        .admin-header ul{
+            position: relative;
+            transform: translate(0,-50%);
+            top:50%;
+        }
+         table th{
+            font-weight: bold;
+        }
+        .thead{
+            background: -webkit-linear-gradient(38deg, #5685ed, #d063cc);
+            background: -o-linear-gradient(38deg, #5685ed, #d063cc);
+            background: -moz-linear-gradient(38deg, #5685ed, #d063cc);
+            background: linear-gradient(38deg, #5685ed, #d063cc);
+            color:white;
+        }
+        .table-container{
+            margin: 20px;
+            width:85%;
+            height:fit-content;
+            background: white;
+            position: relative;
+            box-shadow: 0 10px 15px rgba(0,0,0,0.5);
+            transform: translate(-50%,0);
+            left:48%;
+        }
+
+        .table-container input{
+            border: 1px solid black;
+            border-radius:5px;
+            margin:10px;
+        }
+        .table-container select{
+            margin:10px;
+        }
+        .table-container label{
+            padding-left: 10px;
+        }
+        .dataTables_info{
+            padding-left: 10px;
+        }
+

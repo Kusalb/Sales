@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    {% load staticfiles %}
+    <meta charset="UTF-8">
+    <link rel="stylesheet" type="text/css" href="{% static 'sales/styles/fonts/font-awesome-4.7.0/css/font-awesome.min.css' %}">
+    <link rel="stylesheet" type="text/css" href="{% static 'sales/styles/fonts/Linearicons-Free-v1.0.0/icon-font.min.css' %}">
+    <link rel="stylesheet" type="text/css" href="{% static 'sales/styles/fonts/iconic/css/material-design-iconic-font.min.css' %}">
+    <link href="{% static 'sales/styles/style/css/bootstrap.min.css' %}" rel="stylesheet">
+    <link href="{% static 'sales/styles/style/css/util.css' %}" rel="stylesheet">
+    <link href="{% static 'sales/styles/style/css/select-case.css' %}" rel="stylesheet">
+    <link href="{% static 'sales/styles/style/css/siginup.css' %}" rel="stylesheet">
+    <script type="text/javascript" src="{% static 'sales/styles/style/js/jquery.min.js' %}"></script>
+    <script type="text/javascript" src="{% static 'sales/styles/style/js/bootstrap.min.js' %}"></script>
+</head>
+<body>
+
+<div class="limiter">
+    <div class="container-login100">
+        <div class="login100-more" style="background-image: url('{% static 'sales/styles/images/signup.jpg' %}');"></div>
+
+        <div class="wrap-login100 p-l-50 p-r-50 p-b-50">
+            <form class="login100-form validate-form">
+					<span class="login100-form-title p-b-59">
+						Sign Up
+					</span>
+
+                <div class="wrap-input100 validate-input" data-validate="Name is required">
+                    <span class="label-input100">Full Name</span>
+                    <input class="input100" type="text" name="name" placeholder="Name...">
+                    <span class="focus-input100"></span>
+                </div>
+
+                <div class="wrap-input100 validate-input" data-validate="Shop name is required">
+                    <span class="label-input100">Shop  Name</span>
+                    <input class="input100" type="text" name="shop-name" placeholder="Shop Name...">
+                    <span class="focus-input100"></span>
+                </div>
+                <div class="wrap-input100 validate-input" data-validate="Location is required">
+                    <span class="label-input100">Location</span>
+                    <input class="input100" type="text" name="location" placeholder="Location...">
+                    <span class="focus-input100"></span>
+                </div>
+
+                <div class="wrap-input100 validate-input" data-validate="Location is required">
+                    <span class="label-input100">Shop Category</span>
+                    <div class="custom-select" style="width:100%">
+                        <select class="category ">
+                            <option value="0">Select Category:</option>
+                            <option value="1">Clothes</option>
+                            <option value="2">Shoes</option>
+                            <option value="3">Electronics</option>
+                            <option value="4">Automobil</option>
+                            <option value="5">Makeup</option>
+
+                        </select>
+                    </div>
+                    <span class="focus-input100"></span>
+                </div>
+
+
+
+                <div class="wrap-input100 validate-input" data-validate="Contact no. is required">
+                    <span class="label-input100">Contact No</span>
+                    <input class="input100" type="text" name="contact" placeholder="Contact No...">
+                    <span class="focus-input100"></span>
+                </div>
+                <div class="wrap-input100 validate-input" data-validate = "Valid email is required">
+                    <span class="label-input100">Email</span>
+                    <input class="input100" type="text" name="email" placeholder="Email addess...">
+                    <span class="focus-input100"></span>
+                </div>
+
+
+
+                <div class="wrap-input100 validate-input" data-validate = "Password is required">
+                    <span class="label-input100">Password</span>
+                    <input class="input100" type="password" name="pass" placeholder="*************">
+                    <span class="focus-input100"></span>
+                </div>
+
+                <div class="wrap-input100 validate-input" data-validate = "Repeat Password is required">
+                    <span class="label-input100">Repeat Password</span>
+                    <input class="input100" type="password" name="repeat-pass" placeholder="*************">
+                    <span class="focus-input100"></span>
+                </div>
+
+                <div class="flex-m w-full p-b-33">
+                    <div class="contact100-form-checkbox">
+                        <input class="input-checkbox100" id="ckb1" type="checkbox" name="remember-me">
+                        <label class="label-checkbox100" for="ckb1">
+								<span class="txt1">
+									I agree to the
+									<a href="#" class="txt2 hov1">
+										Terms of User
+									</a>
+								</span>
+                        </label>
+                    </div>
+
+
+                </div>
+
+                <div class="container-login100-form-btn">
+                    <div class="wrap-login100-form-btn">
+                        <div class="login100-form-bgbtn"></div>
+                        <button class="login100-form-btn">
+                            Sign Up
+                        </button>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+<script type="text/javascript" src="{% static 'sales/styles/style/js/select-case.js' %}"></script>
+
+<script type="text/javascript" src="{% static 'sales/styles/style/js/signup.js' %}"></script>
+
+</body>
+</html>

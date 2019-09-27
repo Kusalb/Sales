@@ -25,8 +25,10 @@ urlpatterns = [
     path('shops', views.shopList.as_view()),
     path('customers', views.customerList.as_view()),
     path('products', views.productList.as_view())
-
 ]
+if settings.DEBUG:
+    urlpatterns +=static(settings.STATIC_URL, document_root=settings.STATIC_URL)
+    urlpatterns +=static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
 
 
 

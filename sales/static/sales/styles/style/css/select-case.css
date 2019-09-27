@@ -1,0 +1,76 @@
+/* The container must be positioned relative: */
+.custom-select {
+    width:40%;
+    position: relative;
+    display: inherit;
+}
+.wrap-input100 .custom-select{
+    width:100%
+}
+
+.custom-select select {
+    display: none; /*hide original SELECT element: */
+}
+
+.select-selected {
+    background-color: #ffffff;
+}
+
+/* Style the arrow inside the select element: */
+.select-selected:after {
+    position: absolute;
+    content: "";
+    top: 14px;
+    right: 10px;
+    width: 0;
+    height: 0;
+    border: 6px solid transparent;
+    border-color: black transparent transparent transparent;
+}
+
+/* Point the arrow upwards when the select box is open (active): */
+.select-selected.select-arrow-active:after {
+    border-color: transparent transparent black transparent;
+    top: 7px;
+}
+
+/* style the items (options), including the selected item: */
+.select-items div {
+    width:100%;
+    color: rgba(0, 0, 0, 0.97);
+    padding: 12px 16px;
+    border: 1px solid transparent;
+    border-color: transparent transparent rgba(173, 111, 159,0.8) transparent;
+    cursor: pointer;
+}
+.select-selected {
+    width:100%;
+    color: rgba(0, 0, 0, 0.97);
+    padding: 12px 16px;
+    border: 1px solid transparent;
+    border-color: transparent transparent transparent transparent;
+    cursor: pointer;
+}
+.wrap-input100 .select-selected{
+    padding:12px 0;
+}
+
+
+/* Style items (options): */
+.select-items {
+    position: absolute;
+    background-color: #ffffff;
+    top: 100%;
+    left: 0;
+    right: 0;
+    z-index: 99;
+}
+
+/* Hide the items when the select box is closed: */
+.select-hide {
+    display: none;
+}
+
+.select-items div:hover, .same-as-selected {
+    background-color: rgba(173, 111, 159,0.2);
+}

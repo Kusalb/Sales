@@ -1,0 +1,35 @@
+{% extends 'base.html' %}
+
+{% block content %}
+    {% if user.is_shop %}
+
+        <div class="limiter fm">
+            <div class="table-container">
+                <table class="table">
+                    <tr class="thead">
+                        <th>Image</th>
+                        <th>Offer Name</th>
+                        <th>Discount Percentage</th>
+                        <th>Offer starts at:</th>
+                        <th>Offer ends at:</th>
+                        <th>Edit</th>
+                        <th>Delete</th>
+                    </tr>
+                    {% for deals in deal %}
+                        <tr>
+                            <td><img src="{{ deals.image.url }}" width="40px" height="30px"></td>
+                            <td>{{ deals.deal_name }}</td>
+                            <td>{{ deals.discount_per }}</td>
+                            <td>{{ deals.valid_from }} </td>
+                            <td>{{ deals.valid_till }}</td>
+                            <td><a href="/dealedit/{{ deals.id }}"><i class="fa fa-edit"></i></a></td>
+                            <td><a href="/dealdestroy/{{ deals.id }}"><i class="fa fa-trash"></i></a></td>
+                        </tr>
+                    {% endfor %}
+                </table>
+            </div>
+
+
+        </div>
+    {% endif %}
+{% endblock %}

@@ -4,7 +4,10 @@ from django.urls import path
 from . import views
 
 urlpatterns = [
-    path('', views.login, name='index'),
+    path('log', views.login, name='login'),
+    path('logout', views.logout, name='logout'),
+
+    path('', views.index, name='index'),
     path('login', views.login_view, name='login'),
     path('signup/', views.SignUp.as_view(), name='signup'),
     path('adminpage', views.admin_dash, name='admin_dash'),
@@ -32,9 +35,15 @@ urlpatterns = [
     path('customerupdate/<int:id>', views.customerupdate),
     path('customerdestroy/<int:id>', views.customerdestroy),
 
-    path ('product', views.product, name='product'),
-    path('productshow', views.productshow),
+    path('product', views.product, name='product'),
+    path('productshow', views.productshow, name = 'productshow'),
     path('productedit/<int:id>', views.productedit),
     path('productupdate/<int:id>', views.productupdate),
-    path('productdestroy/<int:id>', views.productdestroy)
+    path('productdestroy/<int:id>', views.productdestroy),
+
+    path('deal', views.deal, name = 'deal'),
+    path('dealshow', views.dealshow, name ='dealshow'),
+    path('dealedit/<int:id>', views.dealedit),
+    path('dealupdate/<int:id>', views.dealupdate),
+    path('dealdestroy/<int:id>', views.dealdestroy)
 ]

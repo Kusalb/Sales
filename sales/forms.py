@@ -2,7 +2,7 @@
 from django import forms
 
 from django.contrib.auth.forms import UserCreationForm, UserChangeForm
-from .models import CustomUser, Shop, Customer, Product
+from .models import CustomUser, Shop, Customer, Product, Deals
 from django.contrib.auth.forms import ReadOnlyPasswordHashField
 from sales.models import Employee
 
@@ -57,7 +57,7 @@ class ShopForm(forms.ModelForm):
 
     class Meta:
         model = Shop
-        fields = ('shop_name', 'contact', 'location', 'category', 'sale_per', 'branded', 'email', 'password', 'password2')
+        fields = ('shop_name', 'contact', 'location', 'category', 'contact_person', 'branded', 'email', 'password', 'password2')
 
 
 
@@ -81,4 +81,8 @@ class EmployeeForm(forms.ModelForm):
         model = Employee
         fields = "__all__"
 
+class DealForm(forms.ModelForm):
 
+    class Meta:
+        model = Deals
+        fields= ('image','deal_name', 'valid_till', 'discount_per', 'valid_from')

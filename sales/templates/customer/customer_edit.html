@@ -5,7 +5,7 @@
     <title>Customer</title>
 </head>
 <body>
-<form method="POST" action="/customerupdate/{{ customer.id }}">{% csrf_token %}
+<form method="POST" action="/customerupdate/{{ customer.id }}"  enctype="multipart/form-data">{% csrf_token %}
     <input type="text" name='first_name' placeholder="first_name" value="{{ customer.first_name }}">
     <input type="text" name='last_name' placeholder="last_name" value="{{ customer.last_name }}">
     <input type="text" name='address' placeholder="location" value="{{ customer.address }}">

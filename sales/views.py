@@ -5,8 +5,8 @@ from django.shortcuts import render, redirect, get_object_or_404
 from django.urls import reverse_lazy
 from django.views.decorators.csrf import csrf_exempt, csrf_protect
 
-from sales.forms import CustomUserCreationForm, ShopForm, EmployeeForm, CustomerForm, ProductForm
-from sales.models import Employee, Customer, Product
+from sales.forms import CustomUserCreationForm, ShopForm, EmployeeForm, CustomerForm, ProductForm, DealForm
+from sales.models import Employee, Customer, Product, Deals
 
 from django.views import generic
 
@@ -53,7 +53,7 @@ class productList(APIView):
 
 
 def login(request):
-    return render(request, 'login/index.html')
+    return render(request, 'login/login.html')
 
 
 # Sign up class
@@ -64,7 +64,7 @@ class SignUp(generic.CreateView):
 
 
 def log(request):
-    return render(request, 'login/index.html')
+    return render(request, 'login/login.html')
 
 
 @csrf_exempt
@@ -86,12 +86,12 @@ def login_view(request):
 
             else:
                 messages.error(request, 'Invalid username or password.')
-                return render(request, 'login/index.html')
+                return render(request, 'login/login.html')
 
         except auth.ObjectDoesNotExist:
             print("invalid user")
 
-    return render(request, 'login/index.html')
+    return render(request, 'login/login.html')
 
 
 def admin_dash(request):
@@ -112,7 +112,7 @@ def shop_sign(request):
 
 def customer(request):
     if request.method == "POST":
-        form = CustomerForm(request.POST)
+        form = CustomerForm(request.POST, request.FILES or None)
         if form.is_valid():
             try:
                 email = request.POST.get('email')
@@ -146,7 +146,7 @@ def customeredit(request, id):
 
 def customerupdate(request, id):
     customer = Customer.objects.get(id=id)
-    form = CustomerForm(request.POST, instance=customer)
+    form = CustomerForm(request.POST, request.FILES or None, instance=customer)
     if form.is_valid():
         form.save()
         return redirect("/customershow")
@@ -161,7 +161,7 @@ def customerdestroy(request, id):
 
 def shop(request):
     if request.method == "POST":
-        form = ShopForm(request.POST)
+        form = ShopForm(request.POST, request.FILES or None)
         if form.is_valid():
             print(form)
             try:
@@ -176,7 +176,7 @@ def shop(request):
                 print(idi)
                 shop.CustomUser_id = CustomUser.objects.get(id=idi)
                 shop.save()
-                return redirect('/shopshow')
+                return redirect('/login')
             except:
                 pass
     else:
@@ -196,7 +196,7 @@ def shopedit(request, id):
 
 def shopupdate(request, id):
     shop = Shop.objects.get(id=id)
-    form = ShopForm(request.POST, instance=shop)
+    form = ShopForm(request.POST, request.FILES or None, instance=shop, )
     if form.is_valid():
         form.save()
         return redirect("/shopshow")
@@ -211,7 +211,7 @@ def shopdestroy(request, id):
 
 def product(request):
     if request.method == "POST":
-        form = ProductForm(request.POST)
+        form = ProductForm(request.POST,request.FILES or None)
         if form.is_valid():
             try:
                 form.save()
@@ -236,7 +236,7 @@ def productedit(request, id):
 def productupdate(request, id):
     product = Product.objects.get(id=id)
     print(product)
-    form = ProductForm(request.POST, instance=product)
+    form = ProductForm(request.POST,request.FILES or None, instance=product)
     print(form)
     if form.is_valid():
         print('1')
@@ -250,3 +250,49 @@ def productdestroy(request, id):
     product = Product.objects.get(id=id)
     product.delete()
     return redirect('/productshow')
+
+
+def deal(request):
+    if request.method == "POST":
+        form = DealForm(request.POST, request.FILES or None)
+        if form.is_valid():
+            try:
+                form.save()
+                return redirect('/dealshow')
+            except:
+                pass
+    else:
+        form = DealForm()
+    return render(request, 'deal/deal_new.html', {'form': form})
+
+
+def dealshow(request):
+    deal = Deals.objects.all()
+    return render(request, 'deal/deal_list.html', {'deal':deal})
+
+def dealedit(request, id):
+    deal = Deals.objects.get(id = id)
+    return render(request, 'deal/deal_edit.html', {'deal': deal})
+
+def logout(request):
+    auth.logout(request)
+    return render(request, 'login/login.html')
+
+
+def dealupdate(request,id):
+    deal = Deals.objects.get(id=id)
+    form = DealForm(request.POST, request.FILES or None, instance=deal )
+    if form.is_valid():
+        form.save()
+        return redirect('/dealshow')
+    return render(request, 'deal/deal_edit.html', {'deal': deal})
+
+
+def dealdestroy(request, id):
+    deal = Deals.objects.get(id=id)
+    deal.delete()
+    return redirect('/dealshow')
+
+
+def index(request):
+    return render(request, 'login/index.html')

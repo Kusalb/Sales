@@ -1,0 +1,80 @@
+{#<!DOCTYPE html>#}
+{#<html lang="en">#}
+{#<head>#}
+{#    <meta charset="UTF-8">#}
+{#    <title>Deal</title>#}
+{#</head>#}
+{#<body>#}
+{#<form method="POST" action="{% url 'deal' %}"  enctype="multipart/form-data">{% csrf_token %}#}
+{#    <input type="file" name='image' placeholder="Image" >#}
+{#    <input type="text" name='deal_name' placeholder="Deal name" >#}
+{#    <input type="text" name='valid_till' placeholder="Valid Till" >#}
+{#        <input type="text" name='valid_from' placeholder="Valid from" >#}
+{##}
+{#    <input type="text" name='discount_per' placeholder="Discount Percentage" >#}
+{#  <button type="submit">create</button>#}
+{#</form>#}
+{#</body>#}
+{#</html>#}
+
+
+{% extends 'base.html' %}
+
+{% block content %}
+    {% if user.is_shop %}
+
+        {% load staticfiles %}
+
+        <div class="limiter fm">
+            <div class="container-login100">
+
+                <div class="wrap-login100 p-l-50 p-t-10 p-r-50 p-b-50 pd-deal">
+                    <form class="login100-form validate-form" method="POST" action="{% url 'deal' %}"
+                          enctype="multipart/form-data">{% csrf_token %}
+                        <span class="login100-form-title p-b-59">
+						Offer Form
+					</span>
+
+                        <div class="wrap-input100 validate-input" data-validate="Old price is required">
+                            <span class="label-input100">Offer Name</span>
+                            <input class="input100" type="text" name="deal_name" placeholder="Offer Name">
+                            <span class="focus-input100"></span>
+                        </div>
+                        <div class="wrap-input100 validate-input" data-validate="Discount Percentage is required">
+                            <span class="label-input100">Discount Percentage</span>
+                            <input class="input100" type="number" name="discount_per" placeholder="Discount Percentage"
+                                   max="100">
+                            <span class="focus-input100"></span>
+                        </div>
+
+                        <div class="wrap-input100 validate-input" data-validate="Offer start date is required">
+                            <span class="label-input100">Offer starts at:</span>
+                            <input class="input100 dt" type="date" name="valid_from" placeholder="Offer start date...">
+                            <span class="focus-input100"></span>
+                        </div>
+                        <div class="wrap-input100 validate-input" data-validate="Offer end date required">
+                            <span class="label-input100">Offer ends at:</span>
+                            <input class="input100 dt" type="date" name="valid_till" placeholder="Offer ends at...">
+                            <span class="focus-input100"></span>
+                        </div>
+                        <div class="wrap-input100 validate-input width100" data-validate="Image required">
+                            <span class="label-input100">Upload banner(if available):</span>
+                            <input class="upld " type="file" name="image" placeholder="Image">
+                        </div>
+                        <div class="container-login100-form-btn">
+                            <div class="wrap-login100-form-btn">
+                                <div class="login100-form-bgbtn"></div>
+                                <button class="login100-form-btn">
+                                    Submit
+                                </button>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+        <script type="text/javascript" src="{% static 'sales/styles/style/js/select-case.js' %}"></script>
+
+        <script type="text/javascript" src="{% static 'sales/styles/style/js/signup.js' %}"></script>
+    {% endif %}
+{% endblock %}

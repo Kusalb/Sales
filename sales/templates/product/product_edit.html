@@ -1,18 +1,67 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Shop Sign up</title>
-</head>
-<body>
-<form method="POST" action="/productupdate/{{ product.id }}">{% csrf_token %}
-    <input type="file" name='image'  value="{{ product.image }}" >
-    <input type="text" name='product_name' placeholder="product_name" value="{{ product.product_name }}" >
-    <input type="text" name='price' placeholder="price"  value="{{ product.price }}">
-    <input type="text" name='discount' placeholder="discount"  value="{{ product.discount }}">
-    <input type="text" name='category' placeholder="category"  value="{{ product.category }}">
-  <button type="submit">Update</button>
-</form>
+{% extends 'base.html' %}
+{% load staticfiles %}
+{% block content %}
+    {% if user.is_shop %}
+        <div class="limiter fm">
+            <div class="container-login100">
 
-</body>
-</html>
+                <div class="wrap-login100 p-l-50 p-t-10 p-r-50 p-b-50 pd-deal">
+                    <form class="login100-form validate-fo  rm" method="POST" action="/productupdate/{{ product.id }}"
+                          enctype="multipart/form-data">{% csrf_token %}
+                        <span class="login100-form-title p-b-59">
+						Add new product
+					</span>
+
+                        <div class="wrap-input100 validate-input" data-validate="Product Name is required">
+                            <span class="label-input100">Product Name</span>
+                            <input class="input100" type="text" name="product_name" value="{{ product.product_name }}">
+                            <span class="focus-input100"></span>
+                        </div>
+                        <div class="wrap-input100 validate-input" data-validate="Price is required">
+                            <span class="label-input100">Price</span>
+                            <input class="input100" type="text" name="price" value="{{ product.price }}">
+                            <span class="focus-input100"></span>
+                        </div>
+
+                        <div class="wrap-input100 validate-input" data-validate="Offer start date is required">
+                            <span class="label-input100">Discount:</span>
+                            <input class="input100" type="text" name="discount" value="{{ product.discount }}">
+                            <span class="focus-input100"></span>
+                        </div>
+
+                        <div class="wrap-input100 validate-input" data-validate="Category is required">
+                            <span class="label-input100">Category</span>
+                            <div class="custom-select" style="width:100%">
+                                <select class="category" name="category">
+                                    <option value={{ product.category }}>{{ product.category }}</option>
+                                    <option value="Category1">Category 1</option>
+                                    <option value="Category2">Category 2</option>
+                                    <option value="Category3">Category 3</option>
+                                </select>
+                            </div>
+                            <span class="focus-input100"></span>
+                        </div>
+
+                        <div class="wrap-input100 validate-input width100" data-validate="Image required">
+                            <span class="label-input100">Upload banner(if available):</span>
+                            <input class="upld " type="file" name="image" placeholder="Image">
+                        </div>
+
+
+                        <div class="container-login100-form-btn">
+                            <div class="wrap-login100-form-btn">
+                                <div class="login100-form-bgbtn"></div>
+                                <button class="login100-form-btn">
+                                    Submit
+                                </button>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+        <script type="text/javascript" src="{% static 'sales/styles/style/js/select-case.js' %}"></script>
+
+        <script type="text/javascript" src="{% static 'sales/styles/style/js/signup.js' %}"></script>
+    {% endif %}
+{% endblock %}
