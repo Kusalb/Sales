@@ -4,7 +4,6 @@ from django import forms
 from django.contrib.auth.forms import UserCreationForm, UserChangeForm
 from .models import CustomUser, Shop, Customer, Product, Deals
 from django.contrib.auth.forms import ReadOnlyPasswordHashField
-from sales.models import Employee
 
 class CustomUserCreationForm(UserCreationForm):
     password1 = forms.CharField(label='Password', widget=forms.PasswordInput)
@@ -76,13 +75,15 @@ class ProductForm(forms.ModelForm):
         fields = ('image', 'product_name', 'price', 'discount', 'category')
 
 
-class EmployeeForm(forms.ModelForm):
-    class Meta:
-        model = Employee
-        fields = "__all__"
+
 
 class DealForm(forms.ModelForm):
 
     class Meta:
         model = Deals
         fields= ('image','deal_name', 'valid_till', 'discount_per', 'valid_from')
+
+class SearchForm(forms.Form):
+    location = forms.CharField(max_length=222)
+    category = forms.CharField(max_length=222)
+

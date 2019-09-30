@@ -1,20 +1,23 @@
 {% extends 'base.html' %}
 
 {% block content %}
-    {% if user.is_shop %}
-
+    {% if user.is_shop or user.is_admin %}
         <div class="limiter fm">
             <div class="table-container">
-                <table class="table">
-                    <tr class="thead">
+                <table id="table_id" class="table">
+                    <thead class="thead">
+                    <tr>
                         <th>Image</th>
                         <th>Offer Name</th>
                         <th>Discount Percentage</th>
                         <th>Offer starts at:</th>
                         <th>Offer ends at:</th>
+                        <th>Appoved</th>
                         <th>Edit</th>
                         <th>Delete</th>
                     </tr>
+                    </thead>
+                    <tbody>
                     {% for deals in deal %}
                         <tr>
                             <td><img src="{{ deals.image.url }}" width="40px" height="30px"></td>
@@ -22,14 +25,66 @@
                             <td>{{ deals.discount_per }}</td>
                             <td>{{ deals.valid_from }} </td>
                             <td>{{ deals.valid_till }}</td>
+                            {% if user.is_admin %}
+                            <td><input type="checkbox" {% if deals.is_approve %}checked{% endif %} data-name='status' data-url="{% url 'dealapprove' deals.id %}"></td>
+                            {% endif %}
+                            {% if user.is_shop%}
+                            <td> {% if deals.is_approve == True %}Approved {% else %} Pending {% endif %}</td>
+                            {% endif %}
                             <td><a href="/dealedit/{{ deals.id }}"><i class="fa fa-edit"></i></a></td>
                             <td><a href="/dealdestroy/{{ deals.id }}"><i class="fa fa-trash"></i></a></td>
                         </tr>
                     {% endfor %}
+                    </tbody>
                 </table>
             </div>
 
 
         </div>
+<script>
+function getCookie(name) {
+    var cookieValue = null;
+    if (document.cookie && document.cookie !== '') {
+        var cookies = document.cookie.split(';');
+        for (var i = 0; i < cookies.length; i++) {
+            var cookie = cookies[i].trim();
+            // Does this cookie string begin with the name we want?
+            if (cookie.substring(0, name.length + 1) === (name + '=')) {
+                cookieValue = decodeURIComponent(cookie.substring(name.length + 1));
+                break;
+            }
+        }
+    }
+    return cookieValue;
+}
+var csrftoken = getCookie('csrftoken');
+
+
+
+$('[data-name="status"]').on('change', function(event){
+    var status = $(this).is(':checked') ? true : false;
+    var data_url = $(this).attr('data-url')
+
+    $.ajax({
+        data: {'status': status},
+        dataType: 'JSON',
+        method: 'POST',
+        url: data_url,
+        beforeSend: function(request){
+            request.setRequestHeader("X-CSRFToken", csrftoken)
+        },
+        success: function(response){
+            alert(`Approved: ${response.status}`)
+        },
+        error: function(e){
+            alert('Error')
+            console.log(e)
+        }
+
+    })
+
+
+})
+</script>
     {% endif %}
 {% endblock %}

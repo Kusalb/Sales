@@ -47,10 +47,15 @@
         {% block content %}
 
         {% endblock %}
+
     {% endif %}
 {% else %}
     <meta http-equiv="refresh" content="0; URL='http://127.0.0.1:8000/login'"/>
 {% endif %}
-
+<script>
+    $(document).ready(function () {
+        $('#table_id').DataTable();
+    });
+</script>
 </body>
 </html>

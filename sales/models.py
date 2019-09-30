@@ -10,6 +10,7 @@ class CustomUser(AbstractUser):
     is_shop = models.BooleanField('Shop', default=False)
     is_customer = models.BooleanField('Customer', default=False)
 
+
 class Customer(models.Model):
     CustomUser = models.ForeignKey(CustomUser, on_delete=models.CASCADE, null=True)
     first_name = models.CharField(max_length=50, default='')
@@ -36,21 +37,14 @@ class Shop(models.Model):
 
 
 class Product(models.Model):
+    CustomUser = models.ForeignKey(CustomUser, on_delete=models.CASCADE, null=True)
     Shop = models.ForeignKey(Shop, on_delete=models.CASCADE, null=True)
     image = models.ImageField(default='test.jpg', null=True, upload_to='shop')
     product_name = models.CharField(max_length=200, default='')
     price = models.CharField(max_length=200, default='')
     discount = models.CharField(max_length=200, default='')
     category = models.CharField(max_length=200, default='')
-    email = models.CharField(max_length=200, default='')
-
-class Employee(models.Model):
-    eid = models.CharField(max_length=20)
-    ename = models.CharField(max_length=100)
-    eemail = models.EmailField()
-    econtact = models.CharField(max_length=15)
-    class Meta:
-        db_table = "employee"
+    is_approve = models.BooleanField(default=False)
 
 class Deals(models.Model):
     CustomUser = models.ForeignKey(CustomUser, on_delete=models.CASCADE, null=True)
@@ -60,3 +54,7 @@ class Deals(models.Model):
     valid_from = models.DateField(max_length=100)
     valid_till = models.DateField(max_length=100)
     discount_per = models.CharField(max_length=100)
+    is_approve = models.BooleanField(default=False)
+
+
+

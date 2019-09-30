@@ -5,14 +5,14 @@ from django.shortcuts import render, redirect, get_object_or_404
 from django.urls import reverse_lazy
 from django.views.decorators.csrf import csrf_exempt, csrf_protect
 
-from sales.forms import CustomUserCreationForm, ShopForm, EmployeeForm, CustomerForm, ProductForm, DealForm
-from sales.models import Employee, Customer, Product, Deals
+from sales.forms import CustomUserCreationForm, ShopForm, CustomerForm, ProductForm, DealForm, SearchForm
+from sales.models import Customer, Product, Deals
 
 from django.views import generic
 
 from sales.models import Shop, CustomUser
 from django.contrib.auth.hashers import make_password, check_password
-from django.http import HttpResponse
+from django.http import HttpResponse, JsonResponse
 from django.shortcuts import get_object_or_404
 from rest_framework.views import APIView
 from rest_framework.response import Response
@@ -147,6 +147,7 @@ def customeredit(request, id):
 def customerupdate(request, id):
     customer = Customer.objects.get(id=id)
     form = CustomerForm(request.POST, request.FILES or None, instance=customer)
+    form = CustomerForm(request.POST, request.FILES or None, instance=customer)
     if form.is_valid():
         form.save()
         return redirect("/customershow")
@@ -176,7 +177,7 @@ def shop(request):
                 print(idi)
                 shop.CustomUser_id = CustomUser.objects.get(id=idi)
                 shop.save()
-                return redirect('/login')
+                return redirect('login')
             except:
                 pass
     else:
@@ -214,7 +215,11 @@ def product(request):
         form = ProductForm(request.POST,request.FILES or None)
         if form.is_valid():
             try:
-                form.save()
+                product = form.save()
+                use = request.user.id
+                product.Shop_id = Shop.objects.get(CustomUser_id=use)
+                product.CustomUser_id = CustomUser.objects.get(id=use)
+                product.save()
                 return redirect('/productshow')
             except:
                 pass
@@ -224,7 +229,11 @@ def product(request):
 
 
 def productshow(request):
-    product = Product.objects.all()
+    use= request.user.id
+    if request.user.is_shop:
+        product = Product.objects.filter(CustomUser_id=use)
+    if request.user.is_admin:
+        product = Product.objects.all()
     return render(request, 'product/product_list.html', {'product': product})
 
 
@@ -257,7 +266,11 @@ def deal(request):
         form = DealForm(request.POST, request.FILES or None)
         if form.is_valid():
             try:
-                form.save()
+                deal = form.save()
+                use = request.user.id
+                deal.CustomUser_id = CustomUser.objects.get(id=use)
+                deal.Shop_id = Shop.objects.get(CustomUser_id= use)
+                deal.save()
                 return redirect('/dealshow')
             except:
                 pass
@@ -267,7 +280,12 @@ def deal(request):
 
 
 def dealshow(request):
-    deal = Deals.objects.all()
+    use= request.user.id
+    id = str(use)
+    if request.user.is_shop:
+        deal = Deals.objects.filter(CustomUser_id=id)
+    if request.user.is_admin:
+        deal = Deals.objects.filter()
     return render(request, 'deal/deal_list.html', {'deal':deal})
 
 def dealedit(request, id):
@@ -295,4 +313,55 @@ def dealdestroy(request, id):
 
 
 def index(request):
-    return render(request, 'login/index.html')
+    deal = Deals.objects.filter(is_approve= True)
+    shop = Shop.objects.all()
+    return render(request, 'login/index.html', {'deal': deal})
+
+def approve_deal(request, id):
+    status = request.POST.get('status')
+    deal = Deals.objects.get(pk=id)
+    flag = False
+    if status == 'true':
+        flag = True
+    deal.is_approve = flag
+    deal.save()
+    return JsonResponse({'status' : flag})
+
+
+
+def approve_product(request, id):
+    status = request.POST.get('status')
+    product = Product.objects.get(pk=id)
+    flag = False
+    if status == 'true':
+        flag = True
+    product.is_approve = flag
+    product.save()
+    return JsonResponse({'status' : flag})
+
+def find(request):
+    location = request.POST.get('search')
+    category = request.POST.get('category')
+    if category == 'Clothes':
+        result = Shop.objects.filter(category = 'Clothes', location = location)
+    elif category == 'Shoes':
+        result = Shop.objects.filter(category = 'Shoes', location = location)
+    elif category == 'Electronics':
+        result = Shop.objects.filter(category = 'Electronics', location = location)
+    elif category == 'Automobile':
+        result = Shop.objects.filter(category = 'Automobile', location = location)
+    elif category == 'Shoes':
+        result = Shop.objects.filter(category = 'Makeup', location = location)
+    elif category == 'Shoes':
+        result = Shop.objects.filter(category = 'Shoes', location = location)
+    return render(request, 'login/find.html', {'item' : result})
+
+
+def shop_info(request, id):
+    deal = Deals.objects.get(id= id)
+    shop = Shop.objects.get(id =deal.Shop_id )
+    context = {
+        'deal': deal,
+        'shop': shop
+    }
+    return render(request, 'shop/shop_info.html', context)

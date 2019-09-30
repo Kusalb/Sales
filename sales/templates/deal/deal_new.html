@@ -1,27 +1,7 @@
-{#<!DOCTYPE html>#}
-{#<html lang="en">#}
-{#<head>#}
-{#    <meta charset="UTF-8">#}
-{#    <title>Deal</title>#}
-{#</head>#}
-{#<body>#}
-{#<form method="POST" action="{% url 'deal' %}"  enctype="multipart/form-data">{% csrf_token %}#}
-{#    <input type="file" name='image' placeholder="Image" >#}
-{#    <input type="text" name='deal_name' placeholder="Deal name" >#}
-{#    <input type="text" name='valid_till' placeholder="Valid Till" >#}
-{#        <input type="text" name='valid_from' placeholder="Valid from" >#}
-{##}
-{#    <input type="text" name='discount_per' placeholder="Discount Percentage" >#}
-{#  <button type="submit">create</button>#}
-{#</form>#}
-{#</body>#}
-{#</html>#}
-
-
 {% extends 'base.html' %}
 
 {% block content %}
-    {% if user.is_shop %}
+    {% if user.is_shop or user.is_admin %}
 
         {% load staticfiles %}
 

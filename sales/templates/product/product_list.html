@@ -1,84 +1,91 @@
-{#<!DOCTYPE html>#}
-{#<html lang="en">#}
-{#<head>#}
-{#    <meta charset="UTF-8">#}
-{#    <title>Product Records</title>#}
-{#     {% load staticfiles %}#}
-{#</head>#}
-{#<body>#}
-{#<table class="table table-striped table-bordered table-sm">#}
-{#    <thead class="thead-dark">#}
-{#    <tr>#}
-{##}
-{#        <th>image</th>#}
-{#        <th>Product Name</th>#}
-{#        <th>Price</th>#}
-{#        <th>Discount</th>#}
-{#        <th>Category</th>#}
-{#        <th>Action</th>#}
-{##}
-{#    </tr>#}
-{#    </thead>#}
-{#    <tbody>#}
-{#{% for products in product %}#}
-{#    <tr>#}
-{#        <td><img src="{{ products.image.url }}" width="40px" height="30px"></td>#}
-{#       <td>{{ products.product_name }}</td>#}
-{#        <td>{{ products.price }}</td>#}
-{#        <td>{{ products.discount }}</td>#}
-{#        <td>{{ products.category }}</td>#}
-{#        <td>#}
-{#            <a href="/productedit/{{ products.id }}"><span class="glyphicon glyphicon-pencil" >Edit</span></a>#}
-{#            <a href="/productdestroy/{{ products.id }}">Delete</a>#}
-{#        </td>#}
-{#    </tr>#}
-{#{% endfor %}#}
-{#    </tbody>#}
-{#</table>#}
-{#<br>#}
-{#<br>#}
-{#<center><a href="/product" class="btn btn-primary">Add New Record</a></center>#}
-{#</body>#}
-{#</html>#}
 {% extends 'base.html' %}
 
 {% block content %}
-    {% if user.is_shop %}
+    {% if user.is_shop or user.is_admin %}
+        <div class="limiter fm">
+            <div class="table-container">
+                <table id="table_id" class="table">
+                    <thead class="thead">
+                    <tr>
+                        <th>Image</th>
+                        <th>Product Name</th>
+                        <th>Price(In Rs.)</th>
+                        <th>Discount</th>
+                        <th>Category</th>
+                        <th>Approved status</th>
+                        <th>Edit</th>
+                        <th>Delete</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    {% for products in product %}
+                        <tr>
+                            <td><img src="{{ products.image.url }}" width="40px" height="30px"></td>
+                            <td>{{ products.product_name }}</td>
+                            <td>{{ products.price }}</td>
+                            <td>{{ products.discount }} %</td>
+                            <td>{{ products.category }}</td>
+                            {% if user.is_admin %}
+                            <td><input type="checkbox" {% if products.is_approve %}checked{% endif %} data-name='status' data-url="{% url 'productapprove' products.id %}"></td>
+                            {% endif %}
+                            {% if user.is_shop%}
+                            <td>{% if products.is_approve == True %}Approved {% else %} Pending{% endif %}</td>
+                            {% endif %}
+                            <td><a href="/productedit/{{ products.id }}"><i class="fa fa-edit"></i></a></td>
+                            <td><a href="/productdestroy/{{ products.id }}"><i class="fa fa-trash"></i></a></td>
+                        </tr>
+                    {% endfor %}
+                    </tbody>
 
-<div class="limiter fm">
+                </table>
+            </div>
 
 
-    <div class="table-container" >
-        <table class="table">
-            <tr class="thead">
-                <th>Image</th>
-                <th>Product Name</th>
-                <th>Price(In Rs.)</th>
-                <th>Discount</th>
-                <th>Category</th>
-                <th>Edit</th>
-                <th>Delete</th>
-            </tr>
-      {% for products in product %}
-    <tr>
-        <td><img src="{{ products.image.url }}" width="40px" height="30px"></td>
-       <td>{{ products.product_name }}</td>
-        <td>{{ products.price }}</td>
-        <td>{{ products.discount }} %</td>
-        <td>{{ products.category }}</td>
-        <td><a href="/productedit/{{ products.id }}"><i class="fa fa-edit"></i></a>        </td>
-        <td> <a href="/productdestroy/{{ products.id }}"><i class="fa fa-trash"></i></a> </td>
-    </tr>
-{% endfor %}
-
-        </table>
-    </div>
+        </div>
+<script>
+function getCookie(name) {
+    var cookieValue = null;
+    if (document.cookie && document.cookie !== '') {
+        var cookies = document.cookie.split(';');
+        for (var i = 0; i < cookies.length; i++) {
+            var cookie = cookies[i].trim();
+            // Does this cookie string begin with the name we want?
+            if (cookie.substring(0, name.length + 1) === (name + '=')) {
+                cookieValue = decodeURIComponent(cookie.substring(name.length + 1));
+                break;
+            }
+        }
+    }
+    return cookieValue;
+}
+var csrftoken = getCookie('csrftoken');
 
 
-</div>
-{##}
-{#<script type="text/javascript" src="style/js/select-case.js"></script>#}
-{##}
-{#<script type="text/javascript" src="style/js/signup.js"></script>#}
-{% endif %}
+
+$('[data-name="status"]').on('change', function(event){
+    var status = $(this).is(':checked') ? true : false;
+    var data_url = $(this).attr('data-url')
+
+    $.ajax({
+        data: {'status': status},
+        dataType: 'JSON',
+        method: 'POST',
+        url: data_url,
+        beforeSend: function(request){
+            request.setRequestHeader("X-CSRFToken", csrftoken)
+        },
+        success: function(response){
+             alert('Changed')
+        },
+        error: function(e){
+            alert('Error')
+            console.log(e)
+        }
+
+    })
+
+
+})
+</script>
+    {% endif %}
 {% endblock %}

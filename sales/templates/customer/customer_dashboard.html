@@ -445,9 +445,12 @@
 <head>
     <meta charset="UTF-8">
     {% load staticfiles %}
-    <link rel="stylesheet" type="text/css" href="{% static 'sales/styles/style/fonts/font-awesome-4.7.0/css/font-awesome.min.css' %}">
-    <link rel="stylesheet" type="text/css" href="{% static 'sales/styles/style/fonts/Linearicons-Free-v1.0.0/icon-font.min.css' %}">
-    <link rel="stylesheet" type="text/css" href="{% static 'sales/styles/style/fonts/iconic/css/material-design-iconic-font.min.css' %}">
+    <link rel="stylesheet" type="text/css"
+          href="{% static 'sales/styles/style/fonts/font-awesome-4.7.0/css/font-awesome.min.css' %}">
+    <link rel="stylesheet" type="text/css"
+          href="{% static 'sales/styles/style/fonts/Linearicons-Free-v1.0.0/icon-font.min.css' %}">
+    <link rel="stylesheet" type="text/css"
+          href="{% static 'sales/styles/style/fonts/iconic/css/material-design-iconic-font.min.css' %}">
     <link href="{% static 'sales/styles/style/css/bootstrap.min.css' %}" rel="stylesheet">
     <link href="{% static 'sales/styles/style/css/util.css' %}" rel="stylesheet">
     <link href="{% static 'sales/styles/style/css/select-case.css' %}" rel="stylesheet">
@@ -456,30 +459,32 @@
     <script type="text/javascript" src="{% static 'sales/styles/style/js/bootstrap.min.js' %}"></script>
 
     <style>
-        .admin-header{
+        .admin-header {
             position: relative;
-            top:0;
-            width:100%;
-            height:5rem;
+            top: 0;
+            width: 100%;
+            height: 5rem;
             background: rgb(110, 125, 230);
-            box-shadow: 0 10px 15px rgba(0,0,0,0.4);
+            box-shadow: 0 10px 15px rgba(0, 0, 0, 0.4);
             border-bottom: 1px solid white;
-            z-index:100;
+            z-index: 100;
             text-align: center;
         }
-        .admin-header ul li{
+
+        .admin-header ul li {
             list-style: none;
             display: inline;
-            color:white;
+            color: white;
             text-align: center;
             padding: 0 20px;
             font-size: 16px;
             font-weight: 500;
         }
-        .admin-header ul{
+
+        .admin-header ul {
             position: relative;
-            transform: translate(0,-50%);
-            top:50%;
+            transform: translate(0, -50%);
+            top: 50%;
         }
     </style>
 </head>
@@ -530,8 +535,6 @@
                     <span class="label-input100">Upload banner(if available):</span>
                     <input class="upld " type="file" name="end-date" placeholder="Offer ends at...">
                 </div>
-
-
 
 
                 <div class="container-login100-form-btn">
