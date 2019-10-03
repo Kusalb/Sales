@@ -1,27 +1,110 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Shop edit</title>
-</head>
-<body>
+{% extends 'base.html' %}
 
-<form method="POST" action="/shopupdate/{{ shop.id }}">    {% csrf_token %}
+{% block content %}
+{##}
+{#<form method="POST" action="/shopupdate/{{ shop.id }}">    {% csrf_token %}#}
+{##}
+{#    <input type="text" name='shop_name' placeholder="shop_name" value="{{ shop.shop_name }}">#}
+{#    <input type="text" name='contact' placeholder="contact" value = "{{ shop.contact }}">#}
+{#    <input type="text" name='location' placeholder="location" value = "{{ shop.location }}">#}
+{#    <input type="text" name='category' placeholder="category" value = "{{ shop.category }}">#}
+{#    <input type="text" name='contact_person' placeholder="contact_person" value = "{{ shop.contact_person }}">#}
+{#    <input type="text" name='branded' placeholder="branded" value="{{ shop.branded }}">#}
+{#    <input type="email" name='email' placeholder="email" value="{{ shop.email }}">#}
+{#    <input type="password" name ='password' placeholder="Password" value="{{ shop.password }}"><br>#}
+{#    <input type="password" name ='password2' placeholder="Password" value="{{ shop.password2 }}"><br>#}
+{##}
+{#        <button type="submit" class="btn btn-success">Update</button>#}
+{##}
+{##}
+{#</form>#}
+     {% load staticfiles %}
+    {% if user.is_admin %}
+        <div class="limiter fm">
+            <div class="container-login100">
 
-    <input type="text" name='shop_name' placeholder="shop_name" value="{{ shop.shop_name }}">
-    <input type="text" name='contact' placeholder="contact" value = "{{ shop.contact }}">
-    <input type="text" name='location' placeholder="location" value = "{{ shop.location }}">
-    <input type="text" name='category' placeholder="category" value = "{{ shop.category }}">
-    <input type="text" name='contact_person' placeholder="contact_person" value = "{{ shop.contact_person }}">
-    <input type="text" name='branded' placeholder="branded" value="{{ shop.branded }}">
-    <input type="email" name='email' placeholder="email" value="{{ shop.email }}">
-    <input type="password" name ='password' placeholder="Password" value="{{ shop.password }}"><br>
-    <input type="password" name ='password2' placeholder="Password" value="{{ shop.password2 }}"><br>
+                <div class="wrap-login100 p-l-50 p-t-10 p-r-50 p-b-50 pd-deal">
+                    <form class="login100-form validate-form" method="POST" action="/shopupdate/{{ shop.id }}"
+                          enctype="multipart/form-data">{% csrf_token %}
+                        <span class="login100-form-title p-b-59">
+						Shop Edit
+					</span>
 
-        <button type="submit" class="btn btn-success">Update</button>
+                        <div class="wrap-input100 validate-input" data-validate="Shop name is required">
+                            <span class="label-input100">Shop Name</span>
+                            <input class="input100" type="text" name="shop_name" value="{{ shop.shop_name }}">
+                            <span class="focus-input100"></span>
+                        </div>
+                        <div class="wrap-input100 validate-input" data-validate="Contact is required">
+                            <span class="label-input100">Contact Person</span>
+                            <input class="input100" type="text" name="contact_person"
+                                   value="{{ shop.contact_person }}">
+                            <span class="focus-input100"></span>
+                        </div>
+
+                        <div class="wrap-input100 validate-input" data-validate="Location is required">
+                            <span class="label-input100">Location</span>
+                            <input class="input100" type="text" name="location" value="{{ shop.location }}">
+                            <span class="focus-input100"></span>
+                        </div>
 
 
-</form>
+                 <div class="wrap-input100 validate-input" data-validate="Brand is required">
+                    <span class="label-input100">Branded?</span>
+                    <div class="custom-select" style="width:100%">
+                        <select class="category" name="branded">
+                            <option value="0">Yes or No?</option>
+                            <option value="Yes">Yes</option>
+                            <option value="No">No</option>
+                        </select>
+                    </div>
+                    <span class="focus-input100"></span>
+                </div>
 
-</body>
-</html>
+
+                <div class="wrap-input100 validate-input" data-validate="Category is required">
+                    <span class="label-input100">Shop Category</span>
+                    <div class="custom-select" style="width:100%" >
+                        <select class="category" name="category">
+                            <option value="0">{{ shop.category }}</option>
+                            <option value="Clothes">Clothes</option>
+                            <option value="Shoes">Shoes</option>
+                            <option value="Electronics">Electronics</option>
+                            <option value="Automobile">Automobile</option>
+                            <option value="Makeup">Makeup</option>
+
+                        </select>
+                    </div>
+                    <span class="focus-input100"></span>
+                </div>
+
+
+
+                <div class="wrap-input100 validate-input" data-validate="Contact no. is required">
+                    <span class="label-input100">Contact No</span>
+                    <input class="input100" type="number" name="contact" placeholder="Contact No" value="{{ shop.contact }}" >
+                    <span class="focus-input100"></span>
+                </div>
+                <div class="wrap-input100 validate-input" data-validate = "Valid email is required">
+                    <span class="label-input100">Email</span>
+                    <input class="input100" type="email" name="email" placeholder="Email addess" value="{{ shop.email }}">
+                    <span class="focus-input100"></span>
+                </div>
+
+                        <div class="container-login100-form-btn">
+                            <div class="wrap-login100-form-btn">
+                                <div class="login100-form-bgbtn"></div>
+                                <button class="login100-form-btn">
+                                    Submit
+                                </button>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+        <script type="text/javascript" src="{% static 'sales/styles/style/js/select-case.js' %}"></script>
+
+        <script type="text/javascript" src="{% static 'sales/styles/style/js/signup.js' %}"></script>
+    {% endif %}
+{% endblock %}

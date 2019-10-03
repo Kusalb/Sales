@@ -1,21 +1,18 @@
-{#<!DOCTYPE html>#}
-{#<html lang="en">#}
-{#<head>#}
-{#    <meta charset="UTF-8">#}
-{#    <title>Find</title>#}
-{#</head>#}
-{#<body>#}
-{#{% for i in item %}#}
-{#    {{ i.category }}#}
-{#    {{ i.branded }}#}
-{#    {{ i.contact }}#}
-{#    {{ i.contact_person }}#}
-{#{% endfor %}#}
-{#</body>#}
-{#</html>#}
-{% extends 'base.html' %}
-{% block content %}
-{% load staticfiles %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <link href="style/css/bootstrap.min.css" rel="stylesheet">
+    <link href="style/css/owl.carousel.min.css" rel="stylesheet">
+    <link href="style/css/style.css" rel="stylesheet">
+    <link href="style/css/select-case.css" rel="stylesheet">
+    <link href="style/css/responsive.css" rel="stylesheet">
+
+    <script type="text/javascript" src="style/js/jquery.min.js"></script>
+    <script type="text/javascript" src="style/js/bootstrap.min.js"></script>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title></title>
+
     <style>
 
         .rslt-location{
@@ -165,7 +162,7 @@
 </head>
 <body>
 <div class="search-header">
-    <img src="{% static 'sales/styles/images/Pricetack.png' %}" class="img-responsive">
+    <img src="images/logo/new-pricetack-logo.png" class="img-responsive">
     <div class="rslt-key">
         <input type="text" placeholder="Enter location here..." class="rslt-location">
         <div class="custom-select">
@@ -192,35 +189,59 @@
 <div class="deals-container">
     <h3 class="text-left text-pink">Browse Offers!!</h3>
     <div class="deals-block">
-        <img src="{% static 'sales/styles/images/icons/tshirt.png' %}" class="img-responsive">
+        <img src="images/icons/tshirt.png" class="img-responsive">
         <p><b>Shop Name Here</b></p>
         <p><b>Offer: 10% Off on all items</b></p>
         <p><b>Validity: 09-10-2019 To 09-20-2019</b></p>
     </div>
     <div class="deals-block">
-        <img src="{% static 'sales/styles/images/icons/tshirt.png' %}" class="img-responsive">
+        <img src="images/icons/tshirt.png" class="img-responsive">
         <p><b>Shop Name Here</b></p>
         <p><b>Offer: 10% Off on all items</b></p>
         <p><b>Validity: 09-10-2019 To 09-20-2019</b></p>
     </div>
     <div class="deals-block">
-        <img src="{% static 'sales/styles/images/icons/tshirt.png' %}" class="img-responsive">
+        <img src="images/icons/tshirt.png" class="img-responsive">
         <p><b>Shop Name Here</b></p>
         <p><b>Offer: 10% Off on all items</b></p>
         <p><b>Validity: 09-10-2019 To 09-20-2019</b></p>
     </div>
     <div class="deals-block">
-        <img src="{% static 'sales/styles/images/icons/tshirt.png' %}" class="img-responsive">
+        <img src="images/icons/tshirt.png" class="img-responsive">
         <p><b>Shop Name Here</b></p>
         <p><b>Offer: 10% Off on all items</b></p>
         <p><b>Validity: 09-10-2019 To 09-20-2019</b></p>
     </div>
     <div class="deals-block">
-        <img src="i{% static 'sales/styles/images/icons/tshirt.png' %}" class="img-responsive">
+        <img src="images/icons/tshirt.png" class="img-responsive">
         <p><b>Shop Name Here</b></p>
         <p><b>Offer: 10% Off on all items</b></p>
         <p><b>Validity: 09-10-2019 To 09-20-2019</b></p>
     </div>
 </div>
-<script type="text/javascript" src="{% static 'style/js/select-case.js' %}"></script>
-{% endblock %}
+
+<footer class="footer">
+    <div class="foot-logo">
+        <img src="images/logo/new-pricetack-logo.png" class="img-responsive">
+    </div>
+
+    <div class="social">
+        <p class="text-center" >Follow us On:</p>
+
+        <ul>
+            <li><i class="fa fa-facebook"></i> </li>
+            <li><i class="fa fa-instagram"></i> </li>
+            <li><i class="fa fa-twitter"></i> </li>
+
+
+        </ul>
+    </div>
+
+
+</footer>
+
+<script type="text/javascript" src="style/js/select-case.js"></script>
+
+
+</body>
+</html>

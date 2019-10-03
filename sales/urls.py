@@ -17,7 +17,7 @@ urlpatterns = [
 
     #Shop
     path('shop', views.shop, name= 'shop'),
-    path('shopshow', views.shopshow),
+    path('shopshow', views.shopshow, name ='shopshow'),
     path('shopedit/<int:id>', views.shopedit),
     path('shopupdate/<int:id>', views.shopupdate),
     path('shopdestroy/<int:id>',views.shopdestroy),
@@ -34,6 +34,13 @@ urlpatterns = [
     path('productedit/<int:id>', views.productedit),
     path('productupdate/<int:id>', views.productupdate),
     path('productdestroy/<int:id>', views.productdestroy),
+
+    #Advertisement
+    path('advertisement', views.advertisement, name='advertisement'),
+    path('advertisementshow', views.advertisementshow, name='advertisementshow'),
+    path('advertisementedit/<int:id>', views.advertisementedit),
+    path('advertisementupdate/<int:id>', views.advertisementupdate),
+    path('advertisementdestroy/<int:id>', views.advertisementdestroy),
 
     path('deal', views.deal, name = 'deal'),
     path('dealshow', views.dealshow, name ='dealshow'),

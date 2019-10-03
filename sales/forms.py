@@ -2,7 +2,7 @@
 from django import forms
 
 from django.contrib.auth.forms import UserCreationForm, UserChangeForm
-from .models import CustomUser, Shop, Customer, Product, Deals
+from .models import CustomUser, Shop, Customer, Product, Deals, Advertisement
 from django.contrib.auth.forms import ReadOnlyPasswordHashField
 
 class CustomUserCreationForm(UserCreationForm):
@@ -72,9 +72,7 @@ class ProductForm(forms.ModelForm):
 
     class Meta:
         model = Product
-        fields = ('image', 'product_name', 'price', 'discount', 'category')
-
-
+        fields = ('image', 'product_name', 'old_price', 'price', 'discount')
 
 
 class DealForm(forms.ModelForm):
@@ -87,3 +85,14 @@ class SearchForm(forms.Form):
     location = forms.CharField(max_length=222)
     category = forms.CharField(max_length=222)
 
+class DealForm(forms.ModelForm):
+
+    class Meta:
+        model = Deals
+        fields= ('image','deal_name', 'valid_till', 'discount_per', 'valid_from')
+
+class AdvertisementForm(forms.ModelForm):
+
+    class Meta:
+        model = Advertisement
+        fields= ('image',)

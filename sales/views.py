@@ -5,8 +5,9 @@ from django.shortcuts import render, redirect, get_object_or_404
 from django.urls import reverse_lazy
 from django.views.decorators.csrf import csrf_exempt, csrf_protect
 
-from sales.forms import CustomUserCreationForm, ShopForm, CustomerForm, ProductForm, DealForm, SearchForm
-from sales.models import Customer, Product, Deals
+from sales.forms import CustomUserCreationForm, ShopForm, CustomerForm, ProductForm, DealForm, SearchForm, \
+    AdvertisementForm
+from sales.models import Customer, Product, Deals, Advertisement
 
 from django.views import generic
 
@@ -203,7 +204,6 @@ def shopupdate(request, id):
         return redirect("/shopshow")
     return render(request, 'shop/shop_edit.html', {'shop': shop})
 
-
 def shopdestroy(request, id):
     shop = Shop.objects.get(id=id)
     shop.delete()
@@ -213,12 +213,16 @@ def shopdestroy(request, id):
 def product(request):
     if request.method == "POST":
         form = ProductForm(request.POST,request.FILES or None)
+        print(form)
         if form.is_valid():
             try:
                 product = form.save()
                 use = request.user.id
+                print(use)
                 product.Shop_id = Shop.objects.get(CustomUser_id=use)
+                print(product.Shop_id)
                 product.CustomUser_id = CustomUser.objects.get(id=use)
+                print(product.CustomUser_id)
                 product.save()
                 return redirect('/productshow')
             except:
@@ -315,7 +319,13 @@ def dealdestroy(request, id):
 def index(request):
     deal = Deals.objects.filter(is_approve= True)
     shop = Shop.objects.all()
-    return render(request, 'login/index.html', {'deal': deal})
+    advertisement = Advertisement.objects.all()
+    context = {
+        'deal': deal,
+        'advertisement': advertisement
+    }
+
+    return render(request, 'login/index.html',context)
 
 def approve_deal(request, id):
     status = request.POST.get('status')
@@ -340,20 +350,33 @@ def approve_product(request, id):
     return JsonResponse({'status' : flag})
 
 def find(request):
-    location = request.POST.get('search')
+    location = request.POST.get('location')
     category = request.POST.get('category')
+    print(location)
+    print(category)
     if category == 'Clothes':
         result = Shop.objects.filter(category = 'Clothes', location = location)
+        print(result)
     elif category == 'Shoes':
         result = Shop.objects.filter(category = 'Shoes', location = location)
+        print(result)
+
     elif category == 'Electronics':
         result = Shop.objects.filter(category = 'Electronics', location = location)
+        print(result)
+
     elif category == 'Automobile':
         result = Shop.objects.filter(category = 'Automobile', location = location)
+        print(result)
+
     elif category == 'Shoes':
         result = Shop.objects.filter(category = 'Makeup', location = location)
+        print(result)
+
     elif category == 'Shoes':
         result = Shop.objects.filter(category = 'Shoes', location = location)
+        print(result)
+
     return render(request, 'login/find.html', {'item' : result})
 
 
@@ -365,3 +388,39 @@ def shop_info(request, id):
         'shop': shop
     }
     return render(request, 'shop/shop_info.html', context)
+
+
+def advertisement(request):
+    if request.method == "POST":
+        form = AdvertisementForm(request.POST, request.FILES or None)
+        if form.is_valid():
+            try:
+                form.save()
+                return redirect('advertisementshow')
+            except:
+                pass
+    else:
+        form = AdvertisementForm()
+    return render(request, 'advertisement/advertisement_new.html', {'form': form})
+
+def advertisementshow(request):
+    advertisement = Advertisement.objects.all()
+    return render(request, 'advertisement/advertisement_list.html', {'advertisement': advertisement})
+
+def advertisementedit(request, id):
+    advertisement = Advertisement.objects.get(id =id)
+    return render(request, 'advertisement/advertisement_edit.html', {'advertisement': advertisement})
+
+
+def advertisementupdate(request, id):
+    advertisement = Advertisement.objects.get(id=id)
+    form = AdvertisementForm(request.POST, request.FILES or None, instance=advertisement)
+    if form.is_valid():
+        form.save()
+        return redirect('/advertisementshow')
+    return render(request, 'advertisement/advertisement_edit.html', {'advertisement': advertisement})
+
+def advertisementdestroy(request, id):
+    advertisement = Advertisement.objects.get(id = id)
+    advertisement.delete()
+    return redirect('/advertisementshow')

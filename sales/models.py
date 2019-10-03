@@ -43,7 +43,7 @@ class Product(models.Model):
     product_name = models.CharField(max_length=200, default='')
     price = models.CharField(max_length=200, default='')
     discount = models.CharField(max_length=200, default='')
-    category = models.CharField(max_length=200, default='')
+    old_price = models.CharField(max_length=200, default='')
     is_approve = models.BooleanField(default=False)
 
 class Deals(models.Model):
@@ -56,5 +56,7 @@ class Deals(models.Model):
     discount_per = models.CharField(max_length=100)
     is_approve = models.BooleanField(default=False)
 
+class Advertisement(models.Model):
+    image = models.ImageField(default='test.jpg', null=True, upload_to='advertisement')
 
 

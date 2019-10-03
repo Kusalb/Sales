@@ -47,31 +47,31 @@
 </div>
 <form method="POST" action="{% url 'find' %}">
     {% csrf_token %}
-<div class="index-banner">
-    <div class="search-container">
-        <input type="text" placeholder="Enter location here..." class="location" name="location">
-        <div class="custom-select">
-            <select class="category" name="category" >
-                <option value="0">Select Category:</option>
-                <option value="Clothes">Clothes</option>
-                <option value="Shoes">Shoes</option>
-                <option value="Electronics">Electronics</option>
-                <option value="Automobile">Automobile</option>
-                <option value="Makeup">Makeup</option>
-            </select>
+    <div class="index-banner">
+        <div class="search-container">
+            <input type="text" placeholder="Enter location here..." class="location" name="location">
+            <div class="custom-select">
+                <select class="category" name="category">
+                    <option value="0">Select Category:</option>
+                    <option value="Clothes">Clothes</option>
+                    <option value="Shoes">Shoes</option>
+                    <option value="Electronics">Electronics</option>
+                    <option value="Automobile">Automobile</option>
+                    <option value="Makeup">Makeup</option>
+                </select>
+            </div>
+            <button class="srch" type="submit"><i class="fa fa-search"></i></button>
         </div>
-        <button class="srch" type="submit"><i class="fa fa-search"></i></button>
+
+
+        <div class="tri-base" style=" background-image: url({% static 'sales/styles/images/base-tri.png' %});">
+            <h1 class="text-right tagline2 focus-in-contract-bck "><b class="main-tag text-shadow-drop-right">Steal</b>
+                <br>the
+                <br>Best <b class="main-tag text-shadow-drop-right">Deals</b>
+            </h1>
+        </div>
+
     </div>
-
-
-    <div class="tri-base" style=" background-image: url({% static 'sales/styles/images/base-tri.png' %});">
-        <h1 class="text-right tagline2 focus-in-contract-bck "><b class="main-tag text-shadow-drop-right">Steal</b>
-            <br>the
-            <br>Best <b class="main-tag text-shadow-drop-right">Deals</b>
-        </h1>
-    </div>
-
-</div>
 </form>
 
 <div class="category-container">
@@ -117,15 +117,11 @@
 <div class="best-deal-container">
     <h3 class="text-left text-pink">Deals of the Day!!</h3>
     <div class="owl-carousel owl-theme">
-        <div class="item">
-            <img src="{% static 'sales/styles/images/ads/ad1.jpg' %}" class="img-responsive">
-
-        </div>
-        <div class="item" style="height: 20rem">
-            <img src="{% static 'sales/styles/images/ads/ad2.jpg' %}" class="img-responsive">
-
-        </div>
-
+        {% for ad in advertisement %}
+            <div class="item">
+                <img src="{{ ad.image.url }}" class="img-responsive">
+            </div>
+        {% endfor %}
     </div>
 
 </div>
@@ -133,14 +129,44 @@
 <div class="deals-container">
     <h3 class="text-left text-pink">Browse Offers!!</h3>
     {% for deals in deal %}
-    <div class="deals-block">
-       <a href="{% url 'shop_info' id=deals.id%}"> <img src=" {{ deals.image.url }}" class="img-responsive"> </a>
-        <p><b>{{deals.deal_name}}</b></p>
-        <p><b>Offer: {{ deals.discount_per }} % Off on all items</b></p>
-        <p><b>Validity: {{deals.valid_from}} To {{deals.valid_till}}</b></p>
-    </div>
+        <div class="deals-block" data-toggle="modal" data-target="#model-{{ deals.id }}">
+            <img src=" {{ deals.image.url }}" class="img-responsive">
+            <p><b>{{ deals.deal_name }}</b></p>
+            <p><b>Offer: {{ deals.discount_per }} % Off on all items</b></p>
+            <p><b>Validity: {{ deals.valid_from }} To {{ deals.valid_till }}</b></p>
+        </div>
     {% endfor %}
 </div>
+{% for deals in deal %}
+    <div class="modal fade" id="model-{{ deals.id }}" tabindex="-1" role="dialog"
+         aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLongTitle">{{ deals.deal_name }}</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <img src="{{ deals.image.url }}" class="img-responsive">
+                    {{ deals.deal_name }}
+                    {{ deals.discount_per }}
+                    {{ deals.valid_from }}
+                    {{ deals.valid_till }}
+                    {{ deals.Shop_id }}
+                    {{ deals.Shop.location }}
+                </div>
+                <div class="modal-footer">
+{#                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>#}
+{#                    <button type="button" class="btn btn-primary">Save changes</button>#}
+                </div>
+            </div>
+        </div>
+    </div>
+{% endfor %}
+
+<!-- Modal -->
 
 <footer class="footer">
     <div class="foot-logo">
@@ -154,8 +180,6 @@
             <li><i class="fa fa-facebook"></i></li>
             <li><i class="fa fa-instagram"></i></li>
             <li><i class="fa fa-twitter"></i></li>
-
-
         </ul>
     </div>
 

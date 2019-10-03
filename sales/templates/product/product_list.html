@@ -11,7 +11,7 @@
                         <th>Product Name</th>
                         <th>Price(In Rs.)</th>
                         <th>Discount</th>
-                        <th>Category</th>
+                        <th>Old Price</th>
                         <th>Approved status</th>
                         <th>Edit</th>
                         <th>Delete</th>
@@ -24,7 +24,7 @@
                             <td>{{ products.product_name }}</td>
                             <td>{{ products.price }}</td>
                             <td>{{ products.discount }} %</td>
-                            <td>{{ products.category }}</td>
+                            <td>{{ products.old_price }}</td>
                             {% if user.is_admin %}
                             <td><input type="checkbox" {% if products.is_approve %}checked{% endif %} data-name='status' data-url="{% url 'productapprove' products.id %}"></td>
                             {% endif %}
@@ -32,7 +32,7 @@
                             <td>{% if products.is_approve == True %}Approved {% else %} Pending{% endif %}</td>
                             {% endif %}
                             <td><a href="/productedit/{{ products.id }}"><i class="fa fa-edit"></i></a></td>
-                            <td><a href="/productdestroy/{{ products.id }}"><i class="fa fa-trash"></i></a></td>
+                            <td><a href="/productdestroy/{{ products.id }}" onclick="return confirm('Are you sure?')"><i class="fa fa-trash"></i></a></td>
                         </tr>
                     {% endfor %}
                     </tbody>
