@@ -204,6 +204,7 @@ def shopupdate(request, id):
         return redirect("/shopshow")
     return render(request, 'shop/shop_edit.html', {'shop': shop})
 
+
 def shopdestroy(request, id):
     shop = Shop.objects.get(id=id)
     shop.delete()
@@ -212,7 +213,7 @@ def shopdestroy(request, id):
 
 def product(request):
     if request.method == "POST":
-        form = ProductForm(request.POST,request.FILES or None)
+        form = ProductForm(request.POST, request.FILES or None)
         print(form)
         if form.is_valid():
             try:
@@ -233,7 +234,7 @@ def product(request):
 
 
 def productshow(request):
-    use= request.user.id
+    use = request.user.id
     if request.user.is_shop:
         product = Product.objects.filter(CustomUser_id=use)
     if request.user.is_admin:
@@ -249,7 +250,7 @@ def productedit(request, id):
 def productupdate(request, id):
     product = Product.objects.get(id=id)
     print(product)
-    form = ProductForm(request.POST,request.FILES or None, instance=product)
+    form = ProductForm(request.POST, request.FILES or None, instance=product)
     print(form)
     if form.is_valid():
         print('1')
@@ -273,7 +274,7 @@ def deal(request):
                 deal = form.save()
                 use = request.user.id
                 deal.CustomUser_id = CustomUser.objects.get(id=use)
-                deal.Shop_id = Shop.objects.get(CustomUser_id= use)
+                deal.Shop_id = Shop.objects.get(CustomUser_id=use)
                 deal.save()
                 return redirect('/dealshow')
             except:
@@ -284,26 +285,28 @@ def deal(request):
 
 
 def dealshow(request):
-    use= request.user.id
+    use = request.user.id
     id = str(use)
     if request.user.is_shop:
         deal = Deals.objects.filter(CustomUser_id=id)
     if request.user.is_admin:
         deal = Deals.objects.filter()
-    return render(request, 'deal/deal_list.html', {'deal':deal})
+    return render(request, 'deal/deal_list.html', {'deal': deal})
+
 
 def dealedit(request, id):
-    deal = Deals.objects.get(id = id)
+    deal = Deals.objects.get(id=id)
     return render(request, 'deal/deal_edit.html', {'deal': deal})
+
 
 def logout(request):
     auth.logout(request)
     return render(request, 'login/login.html')
 
 
-def dealupdate(request,id):
+def dealupdate(request, id):
     deal = Deals.objects.get(id=id)
-    form = DealForm(request.POST, request.FILES or None, instance=deal )
+    form = DealForm(request.POST, request.FILES or None, instance=deal)
     if form.is_valid():
         form.save()
         return redirect('/dealshow')
@@ -317,7 +320,7 @@ def dealdestroy(request, id):
 
 
 def index(request):
-    deal = Deals.objects.filter(is_approve= True)
+    deal = Deals.objects.filter(is_approve=True)
     shop = Shop.objects.all()
     advertisement = Advertisement.objects.all()
     context = {
@@ -325,7 +328,8 @@ def index(request):
         'advertisement': advertisement
     }
 
-    return render(request, 'login/index.html',context)
+    return render(request, 'login/index.html', context)
+
 
 def approve_deal(request, id):
     status = request.POST.get('status')
@@ -335,8 +339,7 @@ def approve_deal(request, id):
         flag = True
     deal.is_approve = flag
     deal.save()
-    return JsonResponse({'status' : flag})
-
+    return JsonResponse({'status': flag})
 
 
 def approve_product(request, id):
@@ -347,42 +350,51 @@ def approve_product(request, id):
         flag = True
     product.is_approve = flag
     product.save()
-    return JsonResponse({'status' : flag})
+    return JsonResponse({'status': flag})
+
 
 def find(request):
     location = request.POST.get('location')
     category = request.POST.get('category')
-    print(location)
-    print(category)
-    if category == 'Clothes':
-        result = Shop.objects.filter(category = 'Clothes', location = location)
-        print(result)
-    elif category == 'Shoes':
-        result = Shop.objects.filter(category = 'Shoes', location = location)
-        print(result)
+    try:
+        if category == 'Clothes':
+            result = Shop.objects.filter(category='Clothes', location=location)
+            result_count = Shop.objects.filter(category='Clothes', location=location).count()
 
-    elif category == 'Electronics':
-        result = Shop.objects.filter(category = 'Electronics', location = location)
-        print(result)
+        elif category == 'Shoes':
+            result = Shop.objects.filter(category='Shoes', location=location)
+            result_count = Shop.objects.filter(category='Shoes', location=location).count()
 
-    elif category == 'Automobile':
-        result = Shop.objects.filter(category = 'Automobile', location = location)
-        print(result)
+        elif category == 'Electronics':
+            result = Shop.objects.filter(category='Electronics', location=location)
+            result_count = Shop.objects.filter(category='Electronics', location=location).count()
 
-    elif category == 'Shoes':
-        result = Shop.objects.filter(category = 'Makeup', location = location)
-        print(result)
+        elif category == 'Automobile':
+            result = Shop.objects.filter(category='Automobile', location=location)
+            result_count = Shop.objects.filter(category='Automobile', location=location).count()
+        elif category == 'Makeup':
+            result = Shop.objects.filter(category='Makeup', location=location)
+            result_count = Shop.objects.filter(category='Makeup', location=location).count()
+        elif category == 'Shoes':
+            result = Shop.objects.filter(category='Shoes', location=location)
+            result_count = Shop.objects.filter(category='Shoes', location=location).count()
 
-    elif category == 'Shoes':
-        result = Shop.objects.filter(category = 'Shoes', location = location)
-        print(result)
+        offer_result = Deals.objects.filter(is_approve=True, Shop__location=location)
+        context = {
+            'item': result,
+            'offer_result': offer_result,
+            'result_count': result_count
+        }
+    except:
+        return redirect('index')
 
-    return render(request, 'login/find.html', {'item' : result})
+    print(context)
+    return render(request, 'login/find.html', context )
 
 
 def shop_info(request, id):
-    deal = Deals.objects.get(id= id)
-    shop = Shop.objects.get(id =deal.Shop_id )
+    deal = Deals.objects.get(id=id)
+    shop = Shop.objects.get(id=deal.Shop_id)
     context = {
         'deal': deal,
         'shop': shop
@@ -403,12 +415,14 @@ def advertisement(request):
         form = AdvertisementForm()
     return render(request, 'advertisement/advertisement_new.html', {'form': form})
 
+
 def advertisementshow(request):
     advertisement = Advertisement.objects.all()
     return render(request, 'advertisement/advertisement_list.html', {'advertisement': advertisement})
 
+
 def advertisementedit(request, id):
-    advertisement = Advertisement.objects.get(id =id)
+    advertisement = Advertisement.objects.get(id=id)
     return render(request, 'advertisement/advertisement_edit.html', {'advertisement': advertisement})
 
 
@@ -420,7 +434,33 @@ def advertisementupdate(request, id):
         return redirect('/advertisementshow')
     return render(request, 'advertisement/advertisement_edit.html', {'advertisement': advertisement})
 
+
 def advertisementdestroy(request, id):
-    advertisement = Advertisement.objects.get(id = id)
+    advertisement = Advertisement.objects.get(id=id)
     advertisement.delete()
     return redirect('/advertisementshow')
+
+
+def cat_clothes(request):
+    clothes = Deals.objects.filter(Shop__category='clothes', is_approve=True)
+    return render(request, 'category/clothes.html', {'cat_clothes': clothes})
+
+
+def cat_shoes(request):
+    shoes = Deals.objects.filter(Shop__category='shoes', is_approve=True)
+    return render(request, 'category/shoes.html', {'cat_shoes': shoes})
+
+
+def cat_automobile(request):
+    automobile = Deals.objects.filter(Shop__category='automobile', is_approve=True)
+    return render(request, 'category/automobile.html', {'cat_automobile': automobile})
+
+
+def cat_makeup(request):
+    makeup = Deals.objects.filter(Shop__category='makeup', is_approve=True)
+    return render(request, 'category/makeup.html', {'cat_makeup': makeup})
+
+
+def cat_electronics(request):
+    electronics = Deals.objects.filter(Shop__category='electronics', is_approve=True)
+    return render(request, 'category/electronics.html', {'cat_electronics': electronics})

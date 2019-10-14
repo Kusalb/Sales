@@ -1,51 +1,51 @@
-{#<!DOCTYPE html>#}
-{#<html lang="en">#}
-{#<head>#}
-{#    <meta charset="UTF-8">#}
-{#    <title>Find</title>#}
-{#</head>#}
-{#<body>#}
-{#{% for i in item %}#}
-{#    {{ i.category }}#}
-{#    {{ i.branded }}#}
-{#    {{ i.contact }}#}
-{#    {{ i.contact_person }}#}
-{#{% endfor %}#}
-{#</body>#}
-{#</html>#}
-{% extends 'base.html' %}
-{% block content %}
-{% load staticfiles %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    {% load staticfiles %}
+
+    <link href="{% static 'sales/styles/style/css/bootstrap.min.css' %}" rel="stylesheet">
+    <link href="{% static 'sales/styles/style/css/owl.carousel.min.css' %}" rel="stylesheet">
+    <link href="{% static 'sales/styles/style/css/style.css' %}" rel="stylesheet">
+    <link href="{% static 'sales/styles/style/css/select-case.css' %}" rel="stylesheet">
+    <link href="{% static 'sales/styles/style/css/responsive.css' %}" rel="stylesheet">
+
+    <script type="text/javascript" src="{% static 'sales/styles/style/js/jquery.min.js' %}"></script>
+    <script type="text/javascript" src="{% static 'sales/styles/style/js/bootstrap.min.js' %}"></script>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title></title>
+
     <style>
 
-        .rslt-location{
+        .rslt-location {
             outline: none;
-            border-left:none;
+            border-left: none;
             border-bottom: none;
             border-top: none;
             background: #f3f2f2;
             border-right: 1px solid white;
-            width:40%;
-            height:5rem;
-            padding-left:15px;
-            display:inline-block;
+            width: 40%;
+            height: 5rem;
+            padding-left: 15px;
+            display: inline-block;
             border-bottom-left-radius: 5px;
             border-top-left-radius: 5px;
             /*position: relative;*/
             /*transform: translate(0,-50%);*/
             /*top:50%*/
         }
-        .category{
-            width:100%;
-            height:4rem;
-            padding-left:15px
+
+        .category {
+            width: 100%;
+            height: 4rem;
+            padding-left: 15px
 
         }
 
-        .srch{
-            width:18%;
+        .srch {
+            width: 18%;
             /*display: inherit;*/
-            height:5rem;
+            height: 5rem;
             background: #ad6f9f;
             color: white;
             border: none;
@@ -53,98 +53,114 @@
             border-bottom-right-radius: 5px;
             outline: none;
         }
-        .text-pink{
-            color:#805378;
+
+        .text-pink {
+            color: #805378;
         }
 
-        .deals-container{
-            width:100%;
-            padding:20px;
+        .deals-container {
+            width: 100%;
+            padding: 20px;
             position: relative;
             min-height: 60vh;
         }
-        .deals-block{
 
-            width:18%;
-            height:20rem;
+        .deals-block {
+
+            width: 18%;
+            height: 20rem;
             display: inline-grid;
             text-align: center;
         }
-        .deals-block:hover{
-            box-shadow: 0 10px 15px rgba(0,0,0,0.2);
+
+        .deals-block:hover {
+            box-shadow: 0 10px 15px rgba(0, 0, 0, 0.2);
         }
-        .deals-block img{
+
+        .deals-block img {
             position: relative;
-            transform: translate(-50%,0);
-            left:50%;
-            height:10rem;
-            width:auto;
+            transform: translate(-50%, 0);
+            left: 50%;
+            height: 10rem;
+            width: auto;
         }
+
         /* ############################footer css strts grom here ############################*/
 
-        .footer{
+        .footer {
             position: relative;
             bottom: 0;
-            width:100%;
-            height:auto;
+            width: 100%;
+            height: auto;
             border-top: 1px solid lightgray;
-            padding:20px;
+            padding: 20px;
         }
-        .foot-logo{
-            width:120px;
-            height:50px;
+
+        .foot-logo {
+            width: 120px;
+            height: 50px;
             position: relative;
             display: inline-block;
 
         }
-        .foot-logo img{
+
+        .foot-logo img {
             position: relative;
-            transform: translate(-50%,0);
-            left:50%;
+            transform: translate(-50%, 0);
+            left: 50%;
         }
-        .social li{
+
+        .social li {
             display: inline;
-            color:#a56ed7;
+            color: #a56ed7;
             font-size: 23px;
-            margin:0 10px;
+            margin: 0 10px;
 
         }
-        .social{
-            height:auto;
+
+        .social {
+            height: auto;
             float: right;
             display: inline-block;
 
         }
-        .social ul{
+
+        .social ul {
             position: relative;
             /*transform: translate(0,-50%);*/
             /*top:45%;*/
         }
-        .right{
+
+        .right {
             float: right;
         }
+
         /* ############################footer css strts grom here ############################*/
 
-        .search-header{
-            width:100%;
-            height:12rem;
+        .search-header {
+            width: 100%;
+            height: 12rem;
             display: inline-flex;
-            padding:10px;
+            padding: 10px;
             position: relative;
-            z-index:100;
+            z-index: 100;
 
         }
-        .search-header img{
-            width:150px;
+
+        .search-header img {
+            width: 150px;
         }
-        .search-header .select-selected{
+
+        .search-header .select-selected {
             background: #f3f2f2;
         }
-        .search-header .srch{
-            background:#5685ed;
+
+        .search-header .srch {
+            background: #5685ed;
         }
+
         .search-header .select-items div {
-            background:#f3f2f2;
+            background: #f3f2f2;
             width: 100%;
             color: rgba(0, 0, 0, 0.97);
             padding: 12px 16px;
@@ -152,9 +168,10 @@
             border-color: transparent transparent rgb(255, 255, 255) transparent;
             cursor: pointer;
         }
-        .rslt-key{
+
+        .rslt-key {
             position: relative;
-            transform: translate(0,-50%);
+            transform: translate(0, -50%);
             top: 50%;
             display: inline-flex;
             width: 80%;
@@ -164,63 +181,75 @@
     </style>
 </head>
 <body>
-<div class="search-header">
-    <img src="{% static 'sales/styles/images/Pricetack.png' %}" class="img-responsive">
-    <div class="rslt-key">
-        <input type="text" placeholder="Enter location here..." class="rslt-location">
-        <div class="custom-select">
-            <select class="category ">
-                <option value="0">Select Category:</option>
-                <option value="1">Clothes</option>
-                <option value="2">Shoes</option>
-                <option value="3">Electronics</option>
-                <option value="4">Automobil</option>
-                <option value="5">Makeup</option>
 
-            </select>
+
+<form method="POST" action="{% url 'find' %}">
+    {% csrf_token %}
+
+    <div class="search-header">
+        <img src="{% static 'sales/styles/images/Pricetack.png' %}" class="img-responsive">
+        <div class="rslt-key">
+            <input type="text" placeholder="Enter location here..." class="rslt-location" name="location">
+            <div class="custom-select">
+                <select class="category" name="category">
+                    <option value="0">Select Category:</option>
+                    <option value="Clothes">Clothes</option>
+                    <option value="Shoes">Shoes</option>
+                    <option value="Electronics">Electronics</option>
+                    <option value="Automobile">Automobile</option>
+                    <option value="Makeup">Makeup</option>
+                </select>
+            </div>
+            <button class="srch"><i class="fa fa-search"></i></button>
         </div>
-        <button class="srch"><i class="fa fa-search"></i> </button>
+
     </div>
-
-</div>
-
-<h3 class="text-center">Your search result for</h3>
-<h4 class="text-center">Location: <b>This</b></h4>
-<h4 class="text-center">Category: <b>This</b></h4>
+</form>
+{% for i in item %}
+    <h3 class="text-center">Your search result for</h3>
+    <h4 class="text-center">Location: <b>{{ i.location }} </b></h4>
+    <h4 class="text-center">Category: <b> {{ i.category }}</b></h4>
+{% endfor %}
 
 
 <div class="deals-container">
     <h3 class="text-left text-pink">Browse Offers!!</h3>
+{% if result_count == 0 %}
+    <img src="{% static 'sales/styles/images/noresult.png' %}" class="center-block">
+{% endif %}
+    {% for j in offer_result %}
     <div class="deals-block">
-        <img src="{% static 'sales/styles/images/icons/tshirt.png' %}" class="img-responsive">
-        <p><b>Shop Name Here</b></p>
-        <p><b>Offer: 10% Off on all items</b></p>
-        <p><b>Validity: 09-10-2019 To 09-20-2019</b></p>
+        <img src="{{ j.image.url }}" class="img-responsive">
+        <p><b>{{ j.Shop.shop_name }}</b></p>
+        <p><b>Offer: {{ j.discount_per }}% Off on all items</b></p>
+        <p><b>Validity: {{ j.valid_from }} To {{ j.valid_till }}</b></p>
     </div>
-    <div class="deals-block">
-        <img src="{% static 'sales/styles/images/icons/tshirt.png' %}" class="img-responsive">
-        <p><b>Shop Name Here</b></p>
-        <p><b>Offer: 10% Off on all items</b></p>
-        <p><b>Validity: 09-10-2019 To 09-20-2019</b></p>
-    </div>
-    <div class="deals-block">
-        <img src="{% static 'sales/styles/images/icons/tshirt.png' %}" class="img-responsive">
-        <p><b>Shop Name Here</b></p>
-        <p><b>Offer: 10% Off on all items</b></p>
-        <p><b>Validity: 09-10-2019 To 09-20-2019</b></p>
-    </div>
-    <div class="deals-block">
-        <img src="{% static 'sales/styles/images/icons/tshirt.png' %}" class="img-responsive">
-        <p><b>Shop Name Here</b></p>
-        <p><b>Offer: 10% Off on all items</b></p>
-        <p><b>Validity: 09-10-2019 To 09-20-2019</b></p>
-    </div>
-    <div class="deals-block">
-        <img src="i{% static 'sales/styles/images/icons/tshirt.png' %}" class="img-responsive">
-        <p><b>Shop Name Here</b></p>
-        <p><b>Offer: 10% Off on all items</b></p>
-        <p><b>Validity: 09-10-2019 To 09-20-2019</b></p>
-    </div>
+    {% endfor %}
+
 </div>
-<script type="text/javascript" src="{% static 'style/js/select-case.js' %}"></script>
-{% endblock %}
+
+<footer class="footer">
+    <div class="foot-logo">
+        <img src="{% static 'sales/styles/images/Pricetack.png' %}" class="img-responsive">
+    </div>
+
+    <div class="social">
+        <p class="text-center">Follow us On:</p>
+
+        <ul>
+            <li><i class="fa fa-facebook"></i></li>
+            <li><i class="fa fa-instagram"></i></li>
+            <li><i class="fa fa-twitter"></i></li>
+
+
+        </ul>
+    </div>
+
+
+</footer>
+
+<script type="text/javascript" src="{% static 'sales/styles/style/js/select-case.js' %}"></script>
+
+
+</body>
+</html>

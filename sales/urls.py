@@ -50,5 +50,11 @@ urlpatterns = [
     path('dealapprove/<int:id>', views.approve_deal, name='dealapprove'),
     path('productapprove/<int:id>', views.approve_product, name='productapprove'),
     path('find', views.find, name='find'),
-    path('shopinfo/<int:id>', views.shop_info, name= 'shop_info')
+    path('shopinfo/<int:id>', views.shop_info, name= 'shop_info'),
+    path('cat_clothes', views.cat_clothes, name = 'cat_clothes'),
+    path('cat_shoes', views.cat_shoes, name='cat_shoes'),
+    path('cat_automobile', views.cat_automobile, name='cat_automobile'),
+    path('cat_makeup', views.cat_makeup, name='cat_makeup'),
+    path('cat_electronics', views.cat_electronics, name='cat_electronics')
+
 ]

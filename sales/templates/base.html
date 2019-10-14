@@ -28,17 +28,17 @@
 
             <ul>
                 {% if user.is_admin %}
-                                   <a href="{% url 'advertisement' %}">
-                    <li>Add Advertisements </li>
-                </a>
-                          <a href="{% url 'advertisementshow' %}">
-                    <li>Advertisements List</li>
-                </a>
-                 <a href="{% url 'shopshow' %}">
-                    <li>Shop Details</li>
-                </a>
+                    <a href="{% url 'advertisement' %}">
+                        <li>Add Advertisements</li>
+                    </a>
+                    <a href="{% url 'advertisementshow' %}">
+                        <li>Advertisements List</li>
+                    </a>
+                    <a href="{% url 'shopshow' %}">
+                        <li>Shop Details</li>
+                    </a>
 
-                    {% endif %}
+                {% endif %}
 
                 <a href="{% url 'deal' %}">
                     <li>Add Offer</li>
@@ -61,21 +61,21 @@
 
         {% endblock %}
 
-<footer class="footer">
-    <div class="foot-logo">
-        <img src="{% static 'sales/styles/images/Pricetack.png' %}" class="img-responsive">
-    </div>
+        <footer class="footer">
+            <div class="foot-logo">
+                <img src="{% static 'sales/styles/images/Pricetack.png' %}" class="img-responsive">
+            </div>
 
-    <div class="social">
-        <p class="text-center">Follow us On:</p>
-        <ul>
-            <li><i class="fa fa-facebook"></i></li>
-            <li><i class="fa fa-instagram"></i></li>
-            <li><i class="fa fa-twitter"></i></li>
-        </ul>
-    </div>
+            <div class="social">
+                <p class="text-center">Follow us On:</p>
+                <ul>
+                    <li><i class="fa fa-facebook"></i></li>
+                    <li><i class="fa fa-instagram"></i></li>
+                    <li><i class="fa fa-twitter"></i></li>
+                </ul>
+            </div>
 
-</footer>
+        </footer>
     {% endif %}
 {% else %}
     <meta http-equiv="refresh" content="0; URL='http://127.0.0.1:8000/login'"/>

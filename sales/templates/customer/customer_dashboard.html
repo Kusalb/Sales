@@ -439,119 +439,119 @@
 {##}
 {#</body>#}
 {#</html>#}
-
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    {% load staticfiles %}
-    <link rel="stylesheet" type="text/css"
-          href="{% static 'sales/styles/style/fonts/font-awesome-4.7.0/css/font-awesome.min.css' %}">
-    <link rel="stylesheet" type="text/css"
-          href="{% static 'sales/styles/style/fonts/Linearicons-Free-v1.0.0/icon-font.min.css' %}">
-    <link rel="stylesheet" type="text/css"
-          href="{% static 'sales/styles/style/fonts/iconic/css/material-design-iconic-font.min.css' %}">
-    <link href="{% static 'sales/styles/style/css/bootstrap.min.css' %}" rel="stylesheet">
-    <link href="{% static 'sales/styles/style/css/util.css' %}" rel="stylesheet">
-    <link href="{% static 'sales/styles/style/css/select-case.css' %}" rel="stylesheet">
-    <link href="{% static 'sales/styles/style/css/siginup.css' %}" rel="stylesheet">
-    <script type="text/javascript" src="{% static 'sales/styles/style/js/jquery.min.js' %}"></script>
-    <script type="text/javascript" src="{% static 'sales/styles/style/js/bootstrap.min.js' %}"></script>
-
-    <style>
-        .admin-header {
-            position: relative;
-            top: 0;
-            width: 100%;
-            height: 5rem;
-            background: rgb(110, 125, 230);
-            box-shadow: 0 10px 15px rgba(0, 0, 0, 0.4);
-            border-bottom: 1px solid white;
-            z-index: 100;
-            text-align: center;
-        }
-
-        .admin-header ul li {
-            list-style: none;
-            display: inline;
-            color: white;
-            text-align: center;
-            padding: 0 20px;
-            font-size: 16px;
-            font-weight: 500;
-        }
-
-        .admin-header ul {
-            position: relative;
-            transform: translate(0, -50%);
-            top: 50%;
-        }
-    </style>
-</head>
-<body>
-<div class="admin-header">
-
-    <ul>
-        <li>Add Offer</li>
-        <li>List Offer</li>
-        <li>Add Product Offer</li>
-        <li>List Product Offer</li>
-
-
-    </ul>
-
-</div>
-<div class="limiter fm">
-    <div class="container-login100">
-
-        <div class="wrap-login100 p-l-50 p-t-10 p-r-50 p-b-50 pd-deal">
-            <form class="login100-form validate-form">
-					<span class="login100-form-title p-b-59">
-						Fill Up Form
-					</span>
-
-                <div class="wrap-input100 validate-input" data-validate="Old price is required">
-                    <span class="label-input100">Old Price</span>
-                    <input class="input100" type="text" name="old-price" placeholder="Old Price...">
-                    <span class="focus-input100"></span>
-                </div>
-                <div class="wrap-input100 validate-input" data-validate="Offer price is required">
-                    <span class="label-input100">Offer Price</span>
-                    <input class="input100" type="text" name="offer-price" placeholder="Offer Price...">
-                    <span class="focus-input100"></span>
-                </div>
-
-                <div class="wrap-input100 validate-input" data-validate="Offer start date is required">
-                    <span class="label-input100">Offer starts at:</span>
-                    <input class="input100 dt" type="date" name="start-date" placeholder="Offer start date...">
-                    <span class="focus-input100"></span>
-                </div>
-                <div class="wrap-input100 validate-input" data-validate="Offer end date required">
-                    <span class="label-input100">Offer ends at:</span>
-                    <input class="input100 dt" type="date" name="end-date" placeholder="Offer ends at...">
-                    <span class="focus-input100"></span>
-                </div>
-                <div class="wrap-input100 validate-input width100" data-validate="Offer end date required">
-                    <span class="label-input100">Upload banner(if available):</span>
-                    <input class="upld " type="file" name="end-date" placeholder="Offer ends at...">
-                </div>
-
-
-                <div class="container-login100-form-btn">
-                    <div class="wrap-login100-form-btn">
-                        <div class="login100-form-bgbtn"></div>
-                        <button class="login100-form-btn">
-                            Submit
-                        </button>
-                    </div>
-                </div>
-            </form>
-        </div>
-    </div>
-</div>
-<script type="text/javascript" src="{% static 'sales/styles/style/js/select-case.js' %}"></script>
-
-<script type="text/javascript" src="{% static 'sales/styles/style/js/signup.js' %}"></script>
-
-</body>
-</html>
+{##}
+{#<!DOCTYPE html>#}
+{#<html lang="en">#}
+{#<head>#}
+{#    <meta charset="UTF-8">#}
+{#    {% load staticfiles %}#}
+{#    <link rel="stylesheet" type="text/css"#}
+{#          href="{% static 'sales/styles/style/fonts/font-awesome-4.7.0/css/font-awesome.min.css' %}">#}
+{#    <link rel="stylesheet" type="text/css"#}
+{#          href="{% static 'sales/styles/style/fonts/Linearicons-Free-v1.0.0/icon-font.min.css' %}">#}
+{#    <link rel="stylesheet" type="text/css"#}
+{#          href="{% static 'sales/styles/style/fonts/iconic/css/material-design-iconic-font.min.css' %}">#}
+{#    <link href="{% static 'sales/styles/style/css/bootstrap.min.css' %}" rel="stylesheet">#}
+{#    <link href="{% static 'sales/styles/style/css/util.css' %}" rel="stylesheet">#}
+{#    <link href="{% static 'sales/styles/style/css/select-case.css' %}" rel="stylesheet">#}
+{#    <link href="{% static 'sales/styles/style/css/siginup.css' %}" rel="stylesheet">#}
+{#    <script type="text/javascript" src="{% static 'sales/styles/style/js/jquery.min.js' %}"></script>#}
+{#    <script type="text/javascript" src="{% static 'sales/styles/style/js/bootstrap.min.js' %}"></script>#}
+{##}
+{#    <style>#}
+{#        .admin-header {#}
+{#            position: relative;#}
+{#            top: 0;#}
+{#            width: 100%;#}
+{#            height: 5rem;#}
+{#            background: rgb(110, 125, 230);#}
+{#            box-shadow: 0 10px 15px rgba(0, 0, 0, 0.4);#}
+{#            border-bottom: 1px solid white;#}
+{#            z-index: 100;#}
+{#            text-align: center;#}
+{#        }#}
+{##}
+{#        .admin-header ul li {#}
+{#            list-style: none;#}
+{#            display: inline;#}
+{#            color: white;#}
+{#            text-align: center;#}
+{#            padding: 0 20px;#}
+{#            font-size: 16px;#}
+{#            font-weight: 500;#}
+{#        }#}
+{##}
+{#        .admin-header ul {#}
+{#            position: relative;#}
+{#            transform: translate(0, -50%);#}
+{#            top: 50%;#}
+{#        }#}
+{#    </style>#}
+{#</head>#}
+{#<body>#}
+{#<div class="admin-header">#}
+{##}
+{#    <ul>#}
+{#        <li>Add Offer</li>#}
+{#        <li>List Offer</li>#}
+{#        <li>Add Product Offer</li>#}
+{#        <li>List Product Offer</li>#}
+{##}
+{##}
+{#    </ul>#}
+{##}
+{#</div>#}
+{#<div class="limiter fm">#}
+{#    <div class="container-login100">#}
+{##}
+{#        <div class="wrap-login100 p-l-50 p-t-10 p-r-50 p-b-50 pd-deal">#}
+{#            <form class="login100-form validate-form">#}
+{#					<span class="login100-form-title p-b-59">#}
+{#						Fill Up Form#}
+{#					</span>#}
+{##}
+{#                <div class="wrap-input100 validate-input" data-validate="Old price is required">#}
+{#                    <span class="label-input100">Old Price</span>#}
+{#                    <input class="input100" type="text" name="old-price" placeholder="Old Price...">#}
+{#                    <span class="focus-input100"></span>#}
+{#                </div>#}
+{#                <div class="wrap-input100 validate-input" data-validate="Offer price is required">#}
+{#                    <span class="label-input100">Offer Price</span>#}
+{#                    <input class="input100" type="text" name="offer-price" placeholder="Offer Price...">#}
+{#                    <span class="focus-input100"></span>#}
+{#                </div>#}
+{##}
+{#                <div class="wrap-input100 validate-input" data-validate="Offer start date is required">#}
+{#                    <span class="label-input100">Offer starts at:</span>#}
+{#                    <input class="input100 dt" type="date" name="start-date" placeholder="Offer start date...">#}
+{#                    <span class="focus-input100"></span>#}
+{#                </div>#}
+{#                <div class="wrap-input100 validate-input" data-validate="Offer end date required">#}
+{#                    <span class="label-input100">Offer ends at:</span>#}
+{#                    <input class="input100 dt" type="date" name="end-date" placeholder="Offer ends at...">#}
+{#                    <span class="focus-input100"></span>#}
+{#                </div>#}
+{#                <div class="wrap-input100 validate-input width100" data-validate="Offer end date required">#}
+{#                    <span class="label-input100">Upload banner(if available):</span>#}
+{#                    <input class="upld " type="file" name="end-date" placeholder="Offer ends at...">#}
+{#                </div>#}
+{##}
+{##}
+{#                <div class="container-login100-form-btn">#}
+{#                    <div class="wrap-login100-form-btn">#}
+{#                        <div class="login100-form-bgbtn"></div>#}
+{#                        <button class="login100-form-btn">#}
+{#                            Submit#}
+{#                        </button>#}
+{#                    </div>#}
+{#                </div>#}
+{#            </form>#}
+{#        </div>#}
+{#    </div>#}
+{#</div>#}
+{#<script type="text/javascript" src="{% static 'sales/styles/style/js/select-case.js' %}"></script>#}
+{##}
+{#<script type="text/javascript" src="{% static 'sales/styles/style/js/signup.js' %}"></script>#}
+{##}
+{#</body>#}
+{#</html>#}

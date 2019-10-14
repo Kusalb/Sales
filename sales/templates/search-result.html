@@ -1,14 +1,16 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <link href="style/css/bootstrap.min.css" rel="stylesheet">
-    <link href="style/css/owl.carousel.min.css" rel="stylesheet">
-    <link href="style/css/style.css" rel="stylesheet">
-    <link href="style/css/select-case.css" rel="stylesheet">
-    <link href="style/css/responsive.css" rel="stylesheet">
+    {% load staticfiles %}
 
-    <script type="text/javascript" src="style/js/jquery.min.js"></script>
-    <script type="text/javascript" src="style/js/bootstrap.min.js"></script>
+    <link href="{% static 'sales/styles/style/css/bootstrap.min.css' %}" rel="stylesheet">
+    <link href="{% static 'sales/styles/style/css/owl.carousel.min.css' %}" rel="stylesheet">
+    <link href="{% static 'sales/styles/style/css/style.css' %}" rel="stylesheet">
+    <link href="{% static 'sales/styles/style/css/select-case.css' %}" rel="stylesheet">
+    <link href="{% static 'sales/styles/style/css/responsive.css' %}" rel="stylesheet">
+
+    <script type="text/javascript" src="{% static 'sales/styles/style/js/jquery.min.js' %}"></script>
+    <script type="text/javascript" src="{% static 'sales/styles/style/js/bootstrap.min.js' %}"></script>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title></title>
@@ -162,16 +164,16 @@
 </head>
 <body>
 <div class="search-header">
-    <img src="images/logo/new-pricetack-logo.png" class="img-responsive">
+    <img src="{% static 'sales/styles/images/Pricetack.png' %}" class="img-responsive">
     <div class="rslt-key">
-        <input type="text" placeholder="Enter location here..." class="rslt-location">
+        <input type="text" placeholder="Enter location here..." class="rslt-location" name="location">
         <div class="custom-select">
-            <select class="category ">
+            <select class="category" name = 'category'>
                 <option value="0">Select Category:</option>
                 <option value="1">Clothes</option>
                 <option value="2">Shoes</option>
                 <option value="3">Electronics</option>
-                <option value="4">Automobil</option>
+                <option value="4">Automobile</option>
                 <option value="5">Makeup</option>
 
             </select>
@@ -189,31 +191,31 @@
 <div class="deals-container">
     <h3 class="text-left text-pink">Browse Offers!!</h3>
     <div class="deals-block">
-        <img src="images/icons/tshirt.png" class="img-responsive">
+        <img src="{% static 'sales/styles/images/icons/tshirt.png' %}" class="img-responsive">
         <p><b>Shop Name Here</b></p>
         <p><b>Offer: 10% Off on all items</b></p>
         <p><b>Validity: 09-10-2019 To 09-20-2019</b></p>
     </div>
     <div class="deals-block">
-        <img src="images/icons/tshirt.png" class="img-responsive">
+        <img src="{% static 'sales/styles/images/icons/tshirt.png' %}" class="img-responsive">
         <p><b>Shop Name Here</b></p>
         <p><b>Offer: 10% Off on all items</b></p>
         <p><b>Validity: 09-10-2019 To 09-20-2019</b></p>
     </div>
     <div class="deals-block">
-        <img src="images/icons/tshirt.png" class="img-responsive">
+        <img src="{% static 'sales/styles/images/icons/tshirt.png' %}" class="img-responsive">
         <p><b>Shop Name Here</b></p>
         <p><b>Offer: 10% Off on all items</b></p>
         <p><b>Validity: 09-10-2019 To 09-20-2019</b></p>
     </div>
     <div class="deals-block">
-        <img src="images/icons/tshirt.png" class="img-responsive">
+        <img src="{% static 'sales/styles/images/icons/tshirt.png' %}" class="img-responsive">
         <p><b>Shop Name Here</b></p>
         <p><b>Offer: 10% Off on all items</b></p>
         <p><b>Validity: 09-10-2019 To 09-20-2019</b></p>
     </div>
     <div class="deals-block">
-        <img src="images/icons/tshirt.png" class="img-responsive">
+        <img src="{% static 'sales/styles/images/icons/tshirt.png' %}" class="img-responsive">
         <p><b>Shop Name Here</b></p>
         <p><b>Offer: 10% Off on all items</b></p>
         <p><b>Validity: 09-10-2019 To 09-20-2019</b></p>
@@ -222,7 +224,7 @@
 
 <footer class="footer">
     <div class="foot-logo">
-        <img src="images/logo/new-pricetack-logo.png" class="img-responsive">
+        <img src="{% static 'sales/styles/images/Pricetack.png' %}" class="img-responsive">
     </div>
 
     <div class="social">
@@ -240,7 +242,7 @@
 
 </footer>
 
-<script type="text/javascript" src="style/js/select-case.js"></script>
+<script type="text/javascript" src="{% static 'sales/styles/style/js/select-case.js' %}"></script>
 
 
 </body>

@@ -62,8 +62,6 @@
             </div>
             <button class="srch" type="submit"><i class="fa fa-search"></i></button>
         </div>
-
-
         <div class="tri-base" style=" background-image: url({% static 'sales/styles/images/base-tri.png' %});">
             <h1 class="text-right tagline2 focus-in-contract-bck "><b class="main-tag text-shadow-drop-right">Steal</b>
                 <br>the
@@ -77,26 +75,36 @@
 <div class="category-container">
     <h3 class="text-left text-pink">Categories</h3>
     <div class="cat-detail">
-        <div class="cat-cir">
-            <img src="{% static 'sales/styles/images/icons/tshirt.png' %}" class="img-responsive">
-            <p class="text-center">Clothes</p>
-        </div>
-        <div class="cat-cir">
-            <img src="{% static 'sales/styles/images/icons/converse.png' %}" class="img-responsive">
-            <p class="text-center">Shoes</p>
-        </div>
-        <div class="cat-cir">
-            <img src="{% static 'sales/styles/images/icons/jeep.png' %}" class="img-responsive">
-            <p class="text-center">Automobile</p>
-        </div>
-        <div class="cat-cir">
-            <img src="{% static 'sales/styles/images/icons/makeup.png' %}" class="img-responsive">
-            <p class="text-center">Grooming</p>
-        </div>
-        <div class="cat-cir">
-            <img src="{% static 'sales/styles/images/icons/electronic.png' %}" class="img-responsive">
-            <p class="text-center">Electronics</p>
-        </div>
+        <a href="{% url 'cat_clothes' %}">
+            <div class="cat-cir">
+                <img src="{% static 'sales/styles/images/icons/tshirt.png' %}" class="img-responsive">
+                <p class="text-center">Clothes</p>
+            </div>
+        </a>
+        <a href="{% url 'cat_shoes' %}">
+            <div class="cat-cir">
+                <img src="{% static 'sales/styles/images/icons/converse.png' %}" class="img-responsive">
+                <p class="text-center">Shoes</p>
+            </div>
+        </a>
+        <a href="{% url 'cat_automobile' %}">
+            <div class="cat-cir">
+                <img src="{% static 'sales/styles/images/icons/jeep.png' %}" class="img-responsive">
+                <p class="text-center">Automobile</p>
+            </div>
+        </a>
+        <a href="{% url 'cat_makeup' %}">
+            <div class="cat-cir">
+                <img src="{% static 'sales/styles/images/icons/makeup.png' %}" class="img-responsive">
+                <p class="text-center">Grooming</p>
+            </div>
+        </a>
+        <a href="{% url 'cat_electronics' %}">
+            <div class="cat-cir">
+                <img src="{% static 'sales/styles/images/icons/electronic.png' %}" class="img-responsive">
+                <p class="text-center">Electronics</p>
+            </div>
+        </a>
         <div class="cat-cir">
             <img src="{% static 'sales/styles/images/icons/restaurant.png' %}" class="img-responsive">
             <p class="text-center">Restaurants</p>
@@ -158,8 +166,8 @@
                     {{ deals.Shop.location }}
                 </div>
                 <div class="modal-footer">
-{#                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>#}
-{#                    <button type="button" class="btn btn-primary">Save changes</button>#}
+                    {#                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>#}
+                    {#                    <button type="button" class="btn btn-primary">Save changes</button>#}
                 </div>
             </div>
         </div>
